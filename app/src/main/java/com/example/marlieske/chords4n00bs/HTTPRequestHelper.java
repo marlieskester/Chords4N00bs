@@ -1,0 +1,59 @@
+package com.example.marlieske.chords4n00bs;
+
+import android.util.Log;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+/**
+ * Created by Marlieske on 10-1-2017.
+ */
+public class HTTPRequestHelper {
+    public static String executeRequest(Object Keyword, String origin){
+        String result = "";
+        URL link;
+        String APIkey = "20bb483cdd4b3050a86e988987c416573c96080b";
+        try {
+            switch (origin) {
+                case "song":
+                    link = new URL("http://api.guitarparty.com/v2/songs/?query=" + Keyword);
+                    break;
+                case "artist":
+                    link = new URL("http://api.guitarparty.com/v2/artists/?query=" + Keyword);
+                    break;
+                default:  //if (origin.equals("chord")) {
+                    link = new URL("http://api.guitarparty.com/v2/chords/?query=" + Keyword + "/?variations=true");
+                    break;
+            }
+            HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+            // misschien werkt het, misschien niet, maar deze is dus voor song& artist
+            connection.setRequestProperty("Guitarparty-Api-Key", APIkey);
+            Integer ResponseCode = connection.getResponseCode();
+
+            if (ResponseCode >= 300 && ResponseCode <= 200) {
+                // if responsecode shows error, get errorstream
+                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                result = String.valueOf(br);
+                Log.d("HTTP", "fout");
+                //return String.valueOf(br);
+            } else {
+                Log.d("HTTP", ResponseCode.toString());
+                // else copy information to result
+                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line = br.readLine();
+                while (line != null){
+                    result = result + line;
+                    line = br.readLine();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.d("HTTP", "x" + result);
+        return result;
+    }
+}
