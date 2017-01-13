@@ -20,5 +20,10 @@ Done today: updating adroid studio after a lot of crashes. Not much code writing
 
 # day 5
 Presenting code, finishing prototype, still struggling with API
+API struggle = overcome!! Searching a song is possible and gives an (imperfect) listview.
+Next goal:
+- songactivity: match title to song
+- playactivity: get chords&lyrics lined out properly
+
 
 
