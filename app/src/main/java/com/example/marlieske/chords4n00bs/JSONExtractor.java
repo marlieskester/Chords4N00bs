@@ -31,14 +31,24 @@ public class JSONExtractor {
         try {
             JSONObject jsonwholething = new JSONObject(mResults);
             JSONArray jresults = (JSONArray) jsonwholething.get("objects");
-            Log.d("extractor", "try");
-            for (int i = 0; i < jsonsongs.length(); i++) {
+            Log.d("extractor", "try" + jresults);
+            for (int i = 0; i < jresults.length(); i++) {
                 // for all songs, extract info from JSONArray, put in one song, add song to arraylist.
                 try {
                     JSONObject result = jresults.getJSONObject(i);
-                    JSONObject jsonSong = (JSONObject) result.get("authors");
+                    JSONArray jsonSong = (JSONArray) result.get("authors");
+                    int numberAuthors = jsonSong.length();
+                    JSONObject jAuthor = (JSONObject) jsonSong.get(1);
+                    String artist = jAuthor.getString("name");
+                    Log.d("extractor", "author" + jsonSong);
+
+//                    String artist = null;
+//                    for (int j = 0; j < numberAuthors; j ++){
+//                        JSONObject jAuthor = (JSONObject) jsonSong.get(i);
+//                        artist = artist + jAuthor.getString("name");
+//                    }
+
                     String title = result.getString("title");
-                    String artist = jsonSong.getString("name");
                     String content = result.getString("body"); /**or body_chords_html**/
                     Song song = new Song(title, artist, content);
                     songs.add(song);
@@ -50,6 +60,7 @@ public class JSONExtractor {
             }
 
         } catch (JSONException e) {
+            Log.d("extractor", "catch");
             e.printStackTrace();
         }
         Log.d("extractor", "x" + songs);

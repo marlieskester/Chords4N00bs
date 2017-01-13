@@ -12,14 +12,15 @@ import java.util.ArrayList;
 public class SongListActivity extends AppCompatActivity {
     String result;
 
+    // for some reason
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("list", "oncreate");
         super.onCreate(savedInstanceState);
+        Log.d("list", "oncreate");
         setContentView(R.layout.activity_song_list);
         Intent toListOfSongs = getIntent();
         result = toListOfSongs.getStringExtra("result");
-       // DisplaySongList();
+        DisplaySongList();
     }
 
     /** Connects Arralylist to adapter*/
