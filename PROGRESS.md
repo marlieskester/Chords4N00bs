@@ -29,4 +29,5 @@ Next goal:
 # day 6 (week 2.1)
 aim for today: get some content for playactivity V
 next goal: autoscroll
+autsoscroll not finished yet, started on SQL (writing works, reading not yet)
 
