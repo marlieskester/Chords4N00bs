@@ -27,6 +27,6 @@ Next goal:
 - playactivity: get chords&lyrics lined out properly
 
 # day 6 (week 2.1)
-aim for today: get some content for playactivity
-after that: get SQL working?
+aim for today: get some content for playactivity V
+next goal: autoscroll
 
