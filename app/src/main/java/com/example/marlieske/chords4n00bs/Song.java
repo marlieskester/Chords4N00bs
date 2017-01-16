@@ -21,7 +21,7 @@ public class Song implements Parcelable {
 
     /** parcelable functions**/
     private Song(Parcel in) {
-        String[] data = new String[4];
+        String[] data = new String[3];
         in.readStringArray(data);
         this.title = data[0];
         this.artist = data[1];

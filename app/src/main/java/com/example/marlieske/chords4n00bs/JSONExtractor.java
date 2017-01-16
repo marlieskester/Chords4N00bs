@@ -26,12 +26,9 @@ public class JSONExtractor {
      */
     public ArrayList<Song> getSongs() {
         ArrayList<Song> songs = new ArrayList<>();
-        JSONArray jsonsongs = new JSONArray();
-        Log.d("extractor", "getsongs");
         try {
             JSONObject jsonwholething = new JSONObject(mResults);
             JSONArray jresults = (JSONArray) jsonwholething.get("objects");
-            Log.d("extractor", "try" + jresults);
             for (int i = 0; i < jresults.length(); i++) {
                 // for all songs, extract info from JSONArray, put in one song, add song to arraylist.
                 try {
@@ -49,7 +46,9 @@ public class JSONExtractor {
 //                    }
 
                     String title = result.getString("title");
-                    String content = result.getString("body"); /**or body_chords_html**/
+                 //   String content = result.getString("body"); /**or body_chords_html**/
+                    String content = result.getString("body_chords_html");
+
                     Song song = new Song(title, artist, content);
                     songs.add(song);
                 } catch (JSONException e) {
@@ -63,7 +62,6 @@ public class JSONExtractor {
             Log.d("extractor", "catch");
             e.printStackTrace();
         }
-        Log.d("extractor", "x" + songs);
         return songs;
 
     }

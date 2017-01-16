@@ -50,11 +50,12 @@ public class ResultListAdapter extends ArrayAdapter<Song> {
             public void onClick(View v) {
                 Intent selectedSong = new Intent(context, SongActivity.class);
                 Song thisOne = songs.get(position);
-                String artist = thisOne.artist;
                 String title = thisOne.title;
+                String artist = thisOne.artist;
                 String content = thisOne.content;
 
                 selectedSong.putExtra("song", new Song(title, artist, content));
+                selectedSong.putExtra("lied", thisOne);
                 context.startActivity(selectedSong);
             }
         });
