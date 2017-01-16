@@ -26,5 +26,7 @@ Next goal:
 - songactivity: match title to song
 - playactivity: get chords&lyrics lined out properly
 
-
+# day 6 (week 2.1)
+aim for today: get some content for playactivity
+after that: get SQL working?
 
