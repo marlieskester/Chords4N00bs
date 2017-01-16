@@ -12,14 +12,16 @@ public class SongBookActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_book);
+        DisplaySongList();
     }
 
     /** Connects Arralylist to adapter*/
-//    public void DisplaySongList(){
-//        //read from SQL
-//        ArrayList<Song> songs = SQLsongs;
-//        ListView LVItems = (ListView) findViewById(R.id.listofstuff);
-//        ResultListAdapter adapter = new ResultListAdapter(this, R.layout.result_layout, songs, "ListofSongs");
-//        LVItems.setAdapter(adapter);
-//    }
+    public void DisplaySongList(){
+        //read from SQL
+        DatabaseHelper helper = new DatabaseHelper(this);
+        ArrayList<Song> songs = helper.read();
+        ListView LVItems = (ListView) findViewById(R.id.listofstuff);
+        ResultListAdapter adapter = new ResultListAdapter(this, R.layout.result_layout, songs, "ListofSongs");
+        LVItems.setAdapter(adapter);
+    }
 }

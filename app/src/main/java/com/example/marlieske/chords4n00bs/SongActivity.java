@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static android.R.attr.data;
 
@@ -135,8 +136,9 @@ public class SongActivity extends AppCompatActivity {
     }
 
     public void saveSettings(View view) {
-        // save to SQL
-        // show toast
+        DatabaseHelper helper = new DatabaseHelper(this);
+        helper.create(song);
+        Toast.makeText(this, "added to Songbook", Toast.LENGTH_SHORT).show();
         // naar songbook?
     }
 }

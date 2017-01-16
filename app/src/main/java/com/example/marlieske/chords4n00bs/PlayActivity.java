@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
-import android.webkit.WebView;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
 public class PlayActivity extends AppCompatActivity {
@@ -28,11 +28,12 @@ Song song;
     //    Spanned htmlAsSpanned = Html(htmlAsString); // used by TextView
 
         // set the html content on a TextView
-//        TextView textView = (TextView) findViewById(R.id.textView4);
-//        textView.setText(htmlAsApanned);
+        TextView textView = (TextView) findViewById(R.id.chordsLyrics);
+        textView.setText(htmlAsApanned);
+        textView.setMovementMethod(new ScrollingMovementMethod());
 
-        WebView webView = (WebView) findViewById(R.id.webview);
-        webView.loadDataWithBaseURL(null, htmlAsString, "text/html", "utf-8", null);
+//        WebView webView = (WebView) findViewById(R.id.webview);
+//        webView.loadDataWithBaseURL(null, htmlAsString, "text/html", "utf-8", null);
 
 
     }

@@ -16,11 +16,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void loadSonglist(View view) {
-        EditText ETKeyWord = (EditText) findViewById(R.id.songsearch);
-        String Keyword = ETKeyWord.getText().toString();
-        loadAsync(Keyword, "song");
-    }
+//    public void loadSonglist(View view) {
+//        EditText ETKeyWord = (EditText) findViewById(R.id.songsearch);
+//        String Keyword = ETKeyWord.getText().toString();
+//        loadAsync(Keyword, "song");
+//}
 
     public void loadArtistlist(View view) {
 //        EditText ETKeyWord = (EditText) findViewById(R.id.artistsearch);
@@ -39,19 +39,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void loadAsync(String Keyword, String origin){
-        if (Keyword.equals("")) {
-            Toast.makeText(this, "Please enter Keyword", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            AsyncTask thisAsyncTask = new SearchAsyncTask(this);
-            thisAsyncTask.execute(Keyword, origin);
-        }
-    }
+
 
     public void loadSongBook(View view) {
         Intent toSongbookActivity = new Intent(this, SongBookActivity.class);
         startActivity(toSongbookActivity);
     }
 
+    public void searchAll(View view) {
+        AsyncTask thisAsyncTask = new SearchAsyncTask(this);
+
+        EditText ETSong = (EditText) findViewById(R.id.songsearch);
+        String title = ETSong.getText().toString();
+        EditText ETartist = (EditText) findViewById(R.id.artistsearch);
+        String artist = ETartist.getText().toString();
+        EditText ETChord = (EditText) findViewById(R.id.chordsearch);
+        String chord = ETChord.getText().toString();
+
+        if (!title.equals("")){
+            thisAsyncTask.execute(title, "song");
+        }
+        else if (!artist.equals("")){
+            thisAsyncTask.execute(artist, "artist");
+        }
+        else if (!chord.equals("")){
+            thisAsyncTask.execute(chord, "chord");
+        }
+        else {
+            Toast.makeText(this, "Please enter Keyword", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
