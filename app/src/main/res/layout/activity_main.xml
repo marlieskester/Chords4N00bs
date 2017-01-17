@@ -11,15 +11,6 @@
     tools:context="com.example.marlieske.chords4n00bs.MainActivity">
 
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/song"
-        android:id="@+id/songsearch"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <!--<Button-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
@@ -45,48 +36,46 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/artist"
-        android:id="@+id/artistsearch"
+        android:hint="@string/song"
+        android:id="@+id/songsearch"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/songsearch"
-        />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/chord"
         android:id="@+id/chordsearch"
+        android:layout_below="@+id/songsearch"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/artistsearch"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/to_songbook"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-        android:layout_below="@+id/majorsearch"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/search"
         android:onClick="searchAll"
-        android:layout_centerVertical="true"
+        android:id="@+id/majorsearch"
+        android:layout_below="@+id/chordsearch"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/majorsearch"
-        android:layout_below="@+id/chordsearch"/>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/go"
+        android:text="@string/to_songbook"
         android:onClick="loadSongBook"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/majorsearch"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

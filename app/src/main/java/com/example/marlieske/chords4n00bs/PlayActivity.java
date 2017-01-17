@@ -25,9 +25,7 @@ Song song;
         // get our html content
         String htmlAsString = song.content;
         Spanned htmlAsApanned = Html.fromHtml(htmlAsString);
-    //    Spanned htmlAsSpanned = Html(htmlAsString); // used by TextView
 
-        // set the html content on a TextView
         TextView textView = (TextView) findViewById(R.id.chordsLyrics);
         textView.setText(htmlAsApanned);
         textView.setMovementMethod(new ScrollingMovementMethod());

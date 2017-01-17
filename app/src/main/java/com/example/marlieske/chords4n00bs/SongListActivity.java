@@ -33,9 +33,4 @@ public class SongListActivity extends AppCompatActivity {
         LVItems.setAdapter(adapter);
     }
 
-
-    public void showSong(View view) {
-        Intent toSongView = new Intent(this, SongActivity.class);
-        startActivity(toSongView);
-    }
 }

@@ -18,16 +18,11 @@ public class HTTPRequestHelper {
         URL link;
         String APIkey = "20bb483cdd4b3050a86e988987c416573c96080b";
         try {
-            switch (origin) {
-                case "song":
-                    link = new URL("http://api.guitarparty.com/v2/songs/?query=" + Keyword);
-                    break;
-                case "artist":
-                    link = new URL("http://api.guitarparty.com/v2/artists/?query=" + Keyword);
-                    break;
-                default:  //if (origin.equals("chord")) {
-                    link = new URL("http://api.guitarparty.com/v2/chords/?query=" + Keyword + "/?variations=true");
-                    break;
+            if (origin.equals("song")){
+                link = new URL("http://api.guitarparty.com/v2/songs/?query=" + Keyword);
+            }
+            else {
+                link = new URL("http://api.guitarparty.com/v2/chords/?query=" + Keyword + "/?variations=true");
             }
             HttpURLConnection connection = (HttpURLConnection) link.openConnection();
             // misschien werkt het, misschien niet, maar deze is dus voor song& artist

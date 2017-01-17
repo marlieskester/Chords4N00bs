@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -57,6 +58,16 @@ public class ResultListAdapter extends ArrayAdapter<Song> {
                 selectedSong.putExtra("song", new Song(title, artist, content));
                 selectedSong.putExtra("lied", thisOne);
                 context.startActivity(selectedSong);
+            }
+        });
+
+        TVTitle.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DatabaseHelper helper = new DatabaseHelper(context);
+                helper.delete(song.title);
+                Toast.makeText(context, "Deleted song from list", Toast.LENGTH_SHORT).show();
+                return true;
             }
         });
         return convertView;

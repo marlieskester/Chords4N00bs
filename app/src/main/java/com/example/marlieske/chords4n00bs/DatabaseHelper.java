@@ -29,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE + " ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " + title_id + " TEXT, " + artist_id + " TEXT " /**+ key_id + " TEXT " **/+ content_id + " TEXT);");
+        db.execSQL("CREATE TABLE " + TABLE + " ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " + title_id + " TEXT, " + artist_id + " TEXT, " + content_id + " TEXT );");
     }
 
     @Override
@@ -45,37 +45,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         values.put(artist_id, song.artist);
     //    values.put(key_id, ??);
         values.put(content_id, song.content);
-        Log.d("helper", values.toString());
         db.insert(TABLE, null, values);
     }
 
-//    public ArrayList<HashMap<String, String>> read() {
-//        SQLiteDatabase db = getReadableDatabase();
-//        String query = "SELECT _id, " + title_id + ", " + artist_id + ", " + content_id + " FROM " + TABLE;
-//        ArrayList<HashMap<String, String >> myList = new ArrayList<>();
-//        Cursor cursor = db.rawQuery(query, null);
-//        if (cursor.moveToFirst()) {
-//            do {
-//                HashMap<String, String> newSong = new HashMap<>();
-//                newSong.put("id", cursor.getString(cursor.getColumnIndex(_ID)));
-//                newSong.put("title", cursor.getString(cursor.getColumnIndex(title_id)));
-//                newSong.put("artist", cursor.getString(cursor.getColumnIndex(artist_id)));
-//            //    newSong.put("key", cursor.getString(cursor.getColumnIndex(key_id)));
-//                newSong.put("content", cursor.getString(cursor.getColumnIndex(content_id)));
-//                myList.add(newSong);
-//            }
-//            while (cursor.moveToNext());
-//
-//        }
-//        cursor.close();
-//        db.close();
-//        Log.d("DBRead", myList.toString());
-//        return myList;
-//    }
-
-    public void delete(String _ID) {
+    public void delete(String title) {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(TABLE, _ID, null);
+        db.delete(TABLE, title, null);
     }
 
     public ArrayList<Song> read() {
@@ -92,11 +67,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 myList.add(newSong);
             }
             while (cursor.moveToNext());
-
         }
         cursor.close();
         db.close();
-        Log.d("DBRead", myList.toString());
         return myList;
     }
 

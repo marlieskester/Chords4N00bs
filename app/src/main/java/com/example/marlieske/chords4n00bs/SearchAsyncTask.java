@@ -41,7 +41,7 @@ public class SearchAsyncTask extends AsyncTask<Object, Void, String> {
         Log.d("onpostexecute", origin);
         if (result.equals("")) {
             Toast.makeText(mContext,"Sorry, nothing found" + result, Toast.LENGTH_SHORT).show();
-        } else if (origin.equals("song") || origin.equals("artist")) {
+        } else if (origin.equals("song")) {
             Log.d("async", "song");
             Intent toListOfSongs = new Intent(mContext, SongListActivity.class);
             toListOfSongs.putExtra("result", result);
