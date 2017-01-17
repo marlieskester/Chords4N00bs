@@ -44,7 +44,9 @@ What's next?
 # day 7 (2.2)
 No trains today :(
 But started early on SQL; reading and writing is fully functional.
-Today: delete (update maybe in beta version), more work on auoscroll function
+Today: delete (update maybe in beta version), more work on auoscroll function.
+
+Autoscroll will probably work best in listview -> today parse lyrics&chords to create a listview-supported display of the song
 
 
 
