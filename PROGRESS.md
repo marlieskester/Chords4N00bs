@@ -25,6 +25,8 @@ API struggle = overcome!! Searching a song is possible and gives an (imperfect) 
 Next goal:
 - songactivity: match title to song     V
 - playactivity: get chords&lyrics lined out properly    V
+MVP finished!
+------------------
 
 # day 6 (week 2.1)
 aim for today: get some content for playactivity        V
@@ -35,4 +37,10 @@ autsoscroll not finished yet, started on SQL (writing works, reading not yet)
 No trains today :(
 But started early on SQL; reading and writing is fully functional.
 Today: delete (update maybe in beta version), more work on auoscroll function
+- transpose
+- autoscroll
+- diagrams
+- songbook
+- chordsearch
+
 
