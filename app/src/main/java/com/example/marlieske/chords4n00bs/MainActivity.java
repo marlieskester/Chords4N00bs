@@ -30,9 +30,15 @@ public class MainActivity extends AppCompatActivity {
         String chord = ETChord.getText().toString();
 
         if (!title.equals("")){
+            if (title.contains(" ")) {
+                title = title.replace(" ", "+");
+            }
             thisAsyncTask.execute(title, "song");
         }
         else if (!chord.equals("")){
+            if (chord.contains(" ")) {
+                chord = chord.replace(" ", "+");
+            }
             thisAsyncTask.execute(chord, "chord");
         }
         else {

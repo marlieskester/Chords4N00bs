@@ -39,11 +39,13 @@ public class ResultListAdapter extends ArrayAdapter<Song> {
         // find textviews
         final TextView TVArtist = (TextView) convertView.findViewById(R.id.artistresult);
         final TextView TVTitle = (TextView) convertView.findViewById(R.id.titleresult);
+        final TextView TVKey = (TextView) convertView.findViewById(R.id.keyresult);
 
         // add text to textview
         final Song song = songs.get(position);
         TVArtist.setText(song.artist);
         TVTitle.setText(song.title);
+        TVKey.setText(" ");
 
         // onclick pass Song song to next activity
         TVTitle.setOnClickListener(new View.OnClickListener() {

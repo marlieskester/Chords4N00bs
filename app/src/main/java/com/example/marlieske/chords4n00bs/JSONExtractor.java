@@ -33,33 +33,28 @@ public class JSONExtractor {
                 // for all songs, extract info from JSONArray, put in one song, add song to arraylist.
                 try {
                     JSONObject result = jresults.getJSONObject(i);
+                    String title = result.getString("title");
+                    String content = result.getString("body"); /**or body_chords_html**/
+                    //   String content = result.getString("body_chords_html");
+
                     JSONArray jsonSong = (JSONArray) result.get("authors");
                     int numberAuthors = jsonSong.length();
-                    JSONObject jAuthor = (JSONObject) jsonSong.get(1);
-                    String artist = jAuthor.getString("name");
-                    Log.d("extractor", "author" + jsonSong);
-
-//                    String artist = null;
-//                    for (int j = 0; j < numberAuthors; j ++){
-//                        JSONObject jAuthor = (JSONObject) jsonSong.get(i);
-//                        artist = artist + jAuthor.getString("name");
-//                    }
-
-                    String title = result.getString("title");
-                 //   String content = result.getString("body"); /**or body_chords_html**/
-                    String content = result.getString("body_chords_html");
+                    String artist = null;
+                    for (int j = 0; j < numberAuthors; j ++){
+                        JSONObject jAuthor = (JSONObject) jsonSong.get(j);
+                        artist = artist + jAuthor.getString("name");
+                    }
 
                     Song song = new Song(title, artist, content);
                     songs.add(song);
                 } catch (JSONException e) {
-                    Log.d("exception", "tracksinfo");
+                    Log.d("JSON", "tracksinfo");
                     e.printStackTrace();
                 }
-                //maybe leave out artist option: irrelevant information.
             }
 
         } catch (JSONException e) {
-            Log.d("extractor", "catch");
+            Log.d("JSON", "catch");
             e.printStackTrace();
         }
         return songs;

@@ -23,7 +23,6 @@ public class SearchAsyncTask extends AsyncTask<Object, Void, String> {
     /** executes HTTPrequest, returns URL */
     @Override
     protected String doInBackground(Object... params) {
-
         Log.d("doinbackground", "enter");
         origin = (String) params[1];
         return HTTPRequestHelper.executeRequest(params[0], origin);
