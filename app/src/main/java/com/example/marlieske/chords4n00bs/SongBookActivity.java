@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -20,10 +21,14 @@ public class SongBookActivity extends AppCompatActivity {
     public void DisplaySongList(){
         DatabaseHelper helper = new DatabaseHelper(this);
         ArrayList<Song> songs = helper.read();
-        ListView LVItems = (ListView) findViewById(R.id.booklist);
-        ResultListAdapter adapter = new ResultListAdapter(this, R.layout.result_layout, songs, "SongBook");
-        Log.d("book", "x" + songs);
-        LVItems.setAdapter(adapter);
+        if (songs.isEmpty()){
+            Toast.makeText(this, "You have no songs yet", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            ListView LVItems = (ListView) findViewById(R.id.booklist);
+            ResultListAdapter adapter = new ResultListAdapter(this, R.layout.result_layout, songs, "songbook");
+            LVItems.setAdapter(adapter);
+        }
     }
 
 }

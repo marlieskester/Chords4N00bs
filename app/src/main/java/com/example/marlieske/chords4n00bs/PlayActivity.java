@@ -1,7 +1,6 @@
 package com.example.marlieske.chords4n00bs;
 
 import android.content.Intent;
-import android.support.v4.widget.ListViewAutoScrollHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -81,8 +80,8 @@ Song song;
         //ArrayAdapter adapter = new ArrayAdapter<Lyrics>(this, R.layout.songtext, playsong);
         ListView listview = (ListView) findViewById(R.id.listview);
         listview.setAdapter(adapter);
-        ListViewAutoScrollHelper scrollHelper = new ListViewAutoScrollHelper(listview);
-        scrollHelper.setEnabled(true);
+//        ListViewAutoScrollHelper scrollHelper = new ListViewAutoScrollHelper(listview);
+//        scrollHelper.setEnabled(true);
     }
 
     class Lyrics {

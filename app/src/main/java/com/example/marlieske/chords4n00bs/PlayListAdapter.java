@@ -38,12 +38,16 @@ public class PlayListAdapter extends ArrayAdapter<PlayActivity.Lyrics> {
         PlayActivity.Lyrics thisSong = lyrics.get(position);
         TVLyrics.setText(thisSong.songtext);
         int chordAmount = thisSong.chord.size();
-        String chords = null;
+        String chords = "";
         for (int i = 0; i < chordAmount; i++) {
-            chords = chords + thisSong.chord.get(i);
+            chords = chords + ", " + thisSong.chord.get(i);
         }
         TVChords.setText(chords);
-        //TODO img nog doen
+        if (chords.equals("")){
+            IVDiagram.setVisibility(View.GONE);
+        } else {
+            //TODO img nog doen
+        }
 
         return convertView;
     }

@@ -2,6 +2,7 @@ package com.example.marlieske.chords4n00bs;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +20,14 @@ public class ResultListAdapter extends ArrayAdapter<Song> {
 
     private Context context;
     private ArrayList<Song> songs;
+    private String classname;
 
     // constructor
     public ResultListAdapter(Context context, int resource, ArrayList<Song> songs, String classname) {
         super(context, resource, songs);
         this.songs = songs;
         this.context = context;
+        this.classname = classname;
     }
 
 
@@ -45,30 +48,44 @@ public class ResultListAdapter extends ArrayAdapter<Song> {
         final Song song = songs.get(position);
         TVArtist.setText(song.artist);
         TVTitle.setText(song.title);
-        TVKey.setText(" ");
+        //TVKey.setText(" ");
 
         // onclick pass Song song to next activity
         TVTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent selectedSong = new Intent(context, SongActivity.class);
                 Song thisOne = songs.get(position);
                 String title = thisOne.title;
                 String artist = thisOne.artist;
                 String content = thisOne.content;
 
+//                Bundle bundle = new Bundle();
+//                bundle.putParcelable("song", thisOne);
+//                SongActivity.song = thisOne;
+                Intent selectedSong = new Intent(context, SongActivity.class);
+
+
                 selectedSong.putExtra("song", new Song(title, artist, content));
                 selectedSong.putExtra("lied", thisOne);
                 context.startActivity(selectedSong);
+
+//                SongActivity.data = searchList;
+//                Intent intent = new Intent(ActivitySearch.this,ActivityResults.class);
+//                startActivity(intent);
+
             }
         });
 
         TVTitle.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                DatabaseHelper helper = new DatabaseHelper(context);
-                helper.delete(song.title);
-                Toast.makeText(context, "Deleted song from list", Toast.LENGTH_SHORT).show();
+                if (classname.equals("songbook")) {
+                    DatabaseHelper helper = new DatabaseHelper(context);
+                    helper.delete(song.title);
+                    Toast.makeText(context, "Deleted song from list", Toast.LENGTH_SHORT).show();
+                    Intent deletedSong = new Intent(context, MainActivity.class);
+                    context.startActivity(deletedSong);
+                }
                 return true;
             }
         });

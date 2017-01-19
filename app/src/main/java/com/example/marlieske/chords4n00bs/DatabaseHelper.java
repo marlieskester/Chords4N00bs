@@ -50,7 +50,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     public void delete(String title) {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(TABLE, title, null);
+       // db.delete(TABLE, title, null);
+        db.execSQL("DELETE FROM " + TABLE + " WHERE " + title_id + "='" + title + "';");
     }
 
     public ArrayList<Song> read() {
