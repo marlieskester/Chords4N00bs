@@ -55,3 +55,5 @@ Finished parser, added functionality for diagram checkbox, tried to fix THE BUG 
 # day 3.1
 Today: fix small songbook bug (caused by incorrect separation of concerns), fix autoscroll(?).
 Other things that need to be done: THE BUG, API2, transpose (and of course layout etc)
+
+Done: Songbook bug, THE BUG, 
