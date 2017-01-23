@@ -16,12 +16,14 @@ import java.util.ArrayList;
  * Created by Marlieske on 18-1-2017.
  */
 
-public class PlayListAdapter extends ArrayAdapter<PlayActivity.Lyrics> {
-    ArrayList<PlayActivity.Lyrics> lyrics;
+public class PlayListAdapter extends ArrayAdapter<LyricsParser.Lyrics> {
+    ArrayList<LyricsParser.Lyrics> lyrics;
+    boolean checked;
 
-    public PlayListAdapter(Context context, int resource, ArrayList<PlayActivity.Lyrics> lyrics) {
+    public PlayListAdapter(Context context, int resource, ArrayList<LyricsParser.Lyrics> lyrics, boolean checked) {
         super(context, resource, lyrics);
         this.lyrics = lyrics;
+        this.checked = checked;
     }
 
     @Override
@@ -35,18 +37,25 @@ public class PlayListAdapter extends ArrayAdapter<PlayActivity.Lyrics> {
         TextView TVChords = (TextView) convertView.findViewById(R.id.lyricsChord);
         ImageView IVDiagram = (ImageView) convertView.findViewById(R.id.lyricsDiagram);
 
-        PlayActivity.Lyrics thisSong = lyrics.get(position);
+        LyricsParser.Lyrics thisSong = lyrics.get(position);
         TVLyrics.setText(thisSong.songtext);
-        int chordAmount = thisSong.chord.size();
-        String chords = "";
-        for (int i = 0; i < chordAmount; i++) {
-            chords = chords + ", " + thisSong.chord.get(i);
+
+        if (checked) {
+            int chordAmount = thisSong.chord.size();
+            String chords = "";
+            for (int i = 0; i < chordAmount; i++) {
+                chords = chords + ", " + thisSong.chord.get(i);
+            }
+            TVChords.setText(chords);
+            if (chords.equals("")) {
+                IVDiagram.setVisibility(View.GONE);
+            } else {
+                //TODO img nog doen
+            }
         }
-        TVChords.setText(chords);
-        if (chords.equals("")){
+        else {
+            TVChords.setVisibility(View.GONE);
             IVDiagram.setVisibility(View.GONE);
-        } else {
-            //TODO img nog doen
         }
 
         return convertView;

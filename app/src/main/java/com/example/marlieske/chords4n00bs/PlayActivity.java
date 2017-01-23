@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class PlayActivity extends AppCompatActivity {
 Song song;
+    Boolean diagram;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,70 +24,21 @@ Song song;
         Intent playSong = getIntent();
         Bundle data = playSong.getExtras();
         song = data.getParcelable("content");
-        setInfo();
-        parser();
-
+        diagram = data.getBoolean("checked");;
+        showSong();
     }
 
-    public void setInfo(){
+
+
+    public void showSong(){
         TextView textView = (TextView) findViewById(R.id.playTitle);
         textView.setText(song.title);
-//        TextView textView = (TextView) findViewById(R.id.playTitle);
-//        textView.setText(song.content);
-//        textView.setMovementMethod(new ScrollingMovementMethod());
-
-//        // get our html content
-//        String htmlAsString = song.content;
-//        Spanned htmlAsApanned = Html.fromHtml(htmlAsString);
-//
-//        TextView textView = (TextView) findViewById(R.id.chordsLyrics);
-//        textView.setText(htmlAsApanned);
-//        textView.setMovementMethod(new ScrollingMovementMethod());
-//
-////        WebView webView = (WebView) findViewById(R.id.webview);
-////        webView.loadDataWithBaseURL(null, htmlAsString, "text/html", "utf-8", null);
-
-
-    }
-
-    public void parser(){
-       // TextView lyrics = (TextView) findViewById(R.id.lyricsLyrics);
-        BufferedReader reader = new BufferedReader(new StringReader(song.content));
-        ArrayList<Lyrics> playsong = new ArrayList<>();
-        try {
-            String line = reader.readLine();
-            while (line != null){
-                Lyrics newLyrics = new Lyrics();
-                newLyrics.songtext = line;
-                newLyrics.chord = new ArrayList<>();
-
-                while (line.contains("[")){
-                    int startChord = line.indexOf("[") + 1;
-                    int endChord = line.indexOf("]");
-                    String chord = line.substring(startChord, endChord);
-                    newLyrics.chord.add(chord);
-                    line = line.substring(endChord + 1);
-                }
-
-                line = reader.readLine();
-                playsong.add(newLyrics);
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        PlayListAdapter adapter = new PlayListAdapter(this, R.layout.lyrics, playsong);
+        LyricsParser parser = new LyricsParser();
+        ArrayList<LyricsParser.Lyrics> songContent = parser.parse(song);
+        PlayListAdapter adapter = new PlayListAdapter(this, R.layout.lyrics, songContent, diagram);
 
         //ArrayAdapter adapter = new ArrayAdapter<Lyrics>(this, R.layout.songtext, playsong);
         ListView listview = (ListView) findViewById(R.id.listview);
         listview.setAdapter(adapter);
-//        ListViewAutoScrollHelper scrollHelper = new ListViewAutoScrollHelper(listview);
-//        scrollHelper.setEnabled(true);
-    }
-
-    class Lyrics {
-        String songtext;
-        ArrayList<String> chord;
-//        String DiagramLink;
     }
 }

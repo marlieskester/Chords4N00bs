@@ -119,9 +119,7 @@ public class SongActivity extends AppCompatActivity {
 
     }
 
-    public void showDiagram(){
-        //onchecked
-    }
+
 
     public void chooseInstrument(){
         // def: guitar
@@ -129,10 +127,12 @@ public class SongActivity extends AppCompatActivity {
     }
 
     public void playSong(View view) {
+        CheckBox diagram = (CheckBox) findViewById(R.id.Diagram);
         //intent naar songview
-        Intent playSong = new Intent(this, PlayActivity.class);
-        playSong.putExtra("content", song);
-        startActivity(playSong);
+        Intent toplaySong = new Intent(this, PlayActivity.class);
+        toplaySong.putExtra("content", song);
+        toplaySong.putExtra("checked", diagram.isChecked());
+        startActivity(toplaySong);
     }
 
     public void saveSettings(View view) {
