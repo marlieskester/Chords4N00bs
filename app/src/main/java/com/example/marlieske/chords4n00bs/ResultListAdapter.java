@@ -16,6 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by Marlieske on 10-1-2017.
  */
+
 public class ResultListAdapter extends ArrayAdapter<Song> {
 
     private Context context;
@@ -59,20 +60,11 @@ public class ResultListAdapter extends ArrayAdapter<Song> {
                 String artist = thisOne.artist;
                 String content = thisOne.content;
 
-//                Bundle bundle = new Bundle();
-//                bundle.putParcelable("song", thisOne);
-//                SongActivity.song = thisOne;
                 Intent selectedSong = new Intent(context, SongActivity.class);
-
 
                 selectedSong.putExtra("song", new Song(title, artist, content));
                 selectedSong.putExtra("lied", thisOne);
                 context.startActivity(selectedSong);
-
-//                SongActivity.data = searchList;
-//                Intent intent = new Intent(ActivitySearch.this,ActivityResults.class);
-//                startActivity(intent);
-
             }
         });
 

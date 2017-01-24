@@ -24,30 +24,34 @@
         android:layout_height="wrap_content"
         android:text="+"
         android:id="@+id/speed_up"
+        android:onClick="startanimation"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+    <TextView
+        android:text="Hello darkness my old friend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/playTitle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
     <!--<ScrollView-->
         <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content">-->
-        <TextView
-            android:text="Hello darkness my old friend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/playTitle"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/scrollView">-->
+
     <!--</ScrollView>-->
 
     <ListView
@@ -55,6 +59,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/listview"
         android:layout_alignParentTop="true"
-        android:layout_below="@id/playTitle"/>
+        android:layout_below="@id/playTitle"
+        android:transcriptMode="alwaysScroll"/>
+
 
 </RelativeLayout>

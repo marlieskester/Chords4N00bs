@@ -22,12 +22,14 @@ public class HTTPRequestHelper {
                 link = new URL("http://api.guitarparty.com/v2/songs/?query=" + Keyword);
             }
             else {
-                link = new URL("http://api.guitarparty.com/v2/chords/?query=" + Keyword + "/?variations=true");
+                link = new URL("http://api.guitarparty.com/v2/chords/?query=" + Keyword);
             }
             HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+
             // misschien werkt het, misschien niet, maar deze is dus voor song& artist
             connection.setRequestProperty("Guitarparty-Api-Key", APIkey);
             Integer ResponseCode = connection.getResponseCode();
+            Log.d("HTTP", "Y "+link);
 
             if (ResponseCode >= 300 && ResponseCode <= 200) {
                 // if responsecode shows error, get errorstream

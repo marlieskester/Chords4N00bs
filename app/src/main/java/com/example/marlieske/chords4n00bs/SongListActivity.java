@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class SongListActivity extends AppCompatActivity {
     String result;
+    static String tmp;
 
     // for some reason
     @Override
@@ -20,12 +21,22 @@ public class SongListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_song_list);
         Intent toListOfSongs = getIntent();
         result = toListOfSongs.getStringExtra("result");
-        DisplaySongList();
+        DisplaySongListTEMP();
     }
 
     /** Connects Arralylist to adapter*/
     public void DisplaySongList(){
         JSONExtractor ex = new JSONExtractor(result);
+        ArrayList<Song> songs = ex.getSongs();
+        Log.d("list", "extractor");
+        ListView LVItems = (ListView) findViewById(R.id.listofstuff);
+        ResultListAdapter adapter = new ResultListAdapter(this, R.layout.result_layout, songs, "ListofSongs");
+        LVItems.setAdapter(adapter);
+    }
+
+    /** Connects Arralylist to adapter*/
+    public void DisplaySongListTEMP(){
+        JSONExtractor ex = new JSONExtractor(tmp);
         ArrayList<Song> songs = ex.getSongs();
         Log.d("list", "extractor");
         ListView LVItems = (ListView) findViewById(R.id.listofstuff);

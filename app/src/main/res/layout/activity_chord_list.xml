@@ -19,7 +19,7 @@
         android:layout_marginStart="15dp"
         android:id="@+id/textView"
         android:textSize="50dp"
-        android:layout_alignTop="@+id/imageView"
+        android:layout_alignTop="@+id/ChordDiagram"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/chord_def"
-        android:id="@+id/imageView"
+        android:id="@+id/ChordDiagram"
         android:layout_marginTop="13dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
@@ -41,7 +41,7 @@
         android:id="@+id/textView2"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textSize="25dp"
-        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignBottom="@+id/ChordDiagram"
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView" />
 
@@ -61,8 +61,8 @@
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/btn_star_big_on"
         android:layout_alignTop="@+id/textView3"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView"
+        android:layout_alignLeft="@+id/ChordDiagram"
+        android:layout_alignStart="@+id/ChordDiagram"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
         android:id="@+id/imageView2" />
@@ -72,8 +72,8 @@
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/btn_star_big_on"
         android:layout_below="@+id/imageView2"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView"
+        android:layout_alignLeft="@+id/ChordDiagram"
+        android:layout_alignStart="@+id/ChordDiagram"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
         android:id="@+id/imageView3" />
@@ -83,8 +83,8 @@
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/btn_star_big_on"
         android:layout_below="@+id/imageView3"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView"
+        android:layout_alignLeft="@+id/ChordDiagram"
+        android:layout_alignStart="@+id/ChordDiagram"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
         android:id="@+id/imageView4" />
@@ -94,8 +94,8 @@
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/btn_star_big_on"
         android:layout_below="@+id/imageView2"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView"
+        android:layout_alignLeft="@+id/ChordDiagram"
+        android:layout_alignStart="@+id/ChordDiagram"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
         android:id="@+id/imageView5" />

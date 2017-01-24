@@ -16,11 +16,11 @@ import java.util.ArrayList;
  * Created by Marlieske on 18-1-2017.
  */
 
-public class PlayListAdapter extends ArrayAdapter<LyricsParser.Lyrics> {
-    ArrayList<LyricsParser.Lyrics> lyrics;
+public class PlayListAdapter extends ArrayAdapter<parser2.Lyrics> {
+    ArrayList<parser2.Lyrics> lyrics;
     boolean checked;
 
-    public PlayListAdapter(Context context, int resource, ArrayList<LyricsParser.Lyrics> lyrics, boolean checked) {
+    public PlayListAdapter(Context context, int resource, ArrayList<parser2.Lyrics> lyrics, boolean checked) {
         super(context, resource, lyrics);
         this.lyrics = lyrics;
         this.checked = checked;
@@ -37,8 +37,9 @@ public class PlayListAdapter extends ArrayAdapter<LyricsParser.Lyrics> {
         TextView TVChords = (TextView) convertView.findViewById(R.id.lyricsChord);
         ImageView IVDiagram = (ImageView) convertView.findViewById(R.id.lyricsDiagram);
 
-        LyricsParser.Lyrics thisSong = lyrics.get(position);
-        TVLyrics.setText(thisSong.songtext);
+        parser2.Lyrics thisSong = lyrics.get(position);
+        String lyrics = (String) thisSong.songtext.get(position);
+        TVLyrics.setText(thisSong.songtext.get(position).toString());
 
         if (checked) {
             int chordAmount = thisSong.chord.size();

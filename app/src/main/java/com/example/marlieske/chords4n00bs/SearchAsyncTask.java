@@ -43,8 +43,9 @@ public class SearchAsyncTask extends AsyncTask<Object, Void, String> {
         } else if (origin.equals("song")) {
             Log.d("async", "song");
             Intent toListOfSongs = new Intent(mContext, SongListActivity.class);
-            toListOfSongs.putExtra("result", result);
+        //    toListOfSongs.putExtra("result", result);
             toListOfSongs.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            SongListActivity.tmp = result;
             Log.d("async", "song2");
             mContext.startActivity(toListOfSongs);
         } else { //chord

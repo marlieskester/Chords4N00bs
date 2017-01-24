@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 /**
  * Created by Marlieske on 16-1-2017.
+ * Class contains all SQL code used for songbook maintanance.
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper{
@@ -19,12 +20,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String _ID = "_id";
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE = "songBook";
-    String title_id = "title";
-    String artist_id = "artist";
+    private String title_id = "title";
+    private String artist_id = "artist";
   //  String key_id = "key";
-    String content_id = "content";
+    private String content_id = "content";
 
-    public DatabaseHelper(Context context) {
+    DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     @Override
@@ -38,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    public void create(Song song) {
+    void create(Song song) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(title_id, song.title);
@@ -48,7 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.insert(TABLE, null, values);
     }
 
-    public void delete(String title) {
+     void delete(String title) {
         SQLiteDatabase db = getWritableDatabase();
        // db.delete(TABLE, title, null);
         db.execSQL("DELETE FROM " + TABLE + " WHERE " + title_id + "='" + title + "';");

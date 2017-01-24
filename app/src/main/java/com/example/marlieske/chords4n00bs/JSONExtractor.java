@@ -5,6 +5,8 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -33,20 +35,27 @@ public class JSONExtractor {
                 // for all songs, extract info from JSONArray, put in one song, add song to arraylist.
                 try {
                     JSONObject result = jresults.getJSONObject(i);
-                    String title = result.getString("title");
-                    String content = result.getString("body"); /**or body_chords_html**/
-                    //   String content = result.getString("body_chords_html");
+                    try {
+                        String title = result.getString("title");
+                        String content = result.getString("body"); /**or body_chords_html**/
+                        //   String content = result.getString("body_chords_html");
 
-                    JSONArray jsonSong = (JSONArray) result.get("authors");
-                    int numberAuthors = jsonSong.length();
-                    String artist = null;
-                    for (int j = 0; j < numberAuthors; j ++){
-                        JSONObject jAuthor = (JSONObject) jsonSong.get(j);
-                        artist = artist + jAuthor.getString("name");
+                        JSONArray jsonSong = (JSONArray) result.get("authors");
+                        int numberAuthors = jsonSong.length();
+                        String artist = null;
+                        for (int j = 0; j < numberAuthors; j++) {
+                            JSONObject jAuthor = (JSONObject) jsonSong.get(j);
+                            artist = artist + jAuthor.getString("name");
+                        }
+
+                        Song song = new Song(title, artist, content);
+                        songs.add(song);
                     }
-
-                    Song song = new Song(title, artist, content);
-                    songs.add(song);
+                    catch (JSONException e){
+                        String name = result.getString("name");
+                        String imgurl = result.getString("image_url");
+                        Chord chord = new Chord(name, imgurl);
+                    }
                 } catch (JSONException e) {
                     Log.d("JSON", "tracksinfo");
                     e.printStackTrace();
