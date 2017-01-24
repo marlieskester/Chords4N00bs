@@ -49,11 +49,16 @@ Today: delete (update maybe in beta version), more work on auoscroll function.
 Autoscroll will probably work best in listview -> today parse lyrics&chords to create a listview-supported display of the song
 
 
-# days that I missed
-Finished parser, added functionality for diagram checkbox, tried to fix THE BUG (you can only search for some songs) but did not succeed just yet. What's finished: the entire SQL thing, searching up to displaying a song.
+# days that I forgot to log
+Finished parser, added functionality for diagram checkbox, tried to fix THE BUG (you can only search for some songs) but did not succeed just yet. Spent hours to find a way to implement autoscroll. What's finished: the entire SQL thing, searching up to displaying a song.
 
 # day 3.1
 Today: fix small songbook bug (caused by incorrect separation of concerns), fix autoscroll(?).
 Other things that need to be done: THE BUG, API2, transpose (and of course layout etc)
 
-Done: Songbook bug, THE BUG, 
+Done: Songbook bug, THE BUG, some autoscrollwork
+
+# day 3.2
+Had to attend a meeting in the morning.
+
+Did fix the chord-diagram-bug in the guitar API, so I can go on with that on my own. Also did some work on the transpose function, which requires a different parser.
