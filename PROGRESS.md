@@ -62,3 +62,6 @@ Done: Songbook bug, THE BUG, some autoscrollwork
 Had to attend a meeting in the morning.
 
 Did fix the chord-diagram-bug in the guitar API, so I can go on with that on my own. Also did some work on the transpose function, which requires a different parser.
+
+# day 3.3
+More work on guitar API, parser & autoscroll.
