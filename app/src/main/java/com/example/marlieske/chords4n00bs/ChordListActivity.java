@@ -1,10 +1,29 @@
 package com.example.marlieske.chords4n00bs;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.util.ArrayList;
+
+import static android.R.attr.id;
+import static android.R.attr.name;
+import static com.example.marlieske.chords4n00bs.R.id.ChordDiagram;
 
 public class ChordListActivity extends AppCompatActivity {
     String result;
@@ -17,8 +36,30 @@ public class ChordListActivity extends AppCompatActivity {
         setContent();
     }
 
-    void setContent(){
-        ImageView ChordDiagram = (ImageView) findViewById(R.id.ChordDiagram);
-    //    ChordDiagram.setImageURI();
+    Chord getContent(){
+        Chord chord = null;
+        try {
+            JSONObject jsonwholething = null;
+            jsonwholething = new JSONObject(result);
+            JSONArray jresults = (JSONArray) jsonwholething.get("objects");
+            JSONObject result = jresults.getJSONObject(0);
+            String name = result.getString("name");
+            String imgurl = result.getString("image_url");
+            chord = new Chord(name, imgurl);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return chord;
     }
+
+    void setContent(){
+        Chord chord = getContent();
+
+        ImageView chordDiagram = (ImageView) findViewById(R.id.ChordDiagram);
+        TextView chordTitle = (TextView) findViewById(R.id.chordName);
+
+        chordTitle.setText(chord.name);
+        new DownloadImageTask(chordDiagram).execute(chord.imgurl);
+    }
+
 }

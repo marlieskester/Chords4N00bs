@@ -28,20 +28,20 @@ public class MainActivity extends AppCompatActivity {
         String title = ETSong.getText().toString();
         EditText ETChord = (EditText) findViewById(R.id.chordsearch);
         String chord = ETChord.getText().toString();
+        String withCap = null;
 
         if (!title.equals("")){
             if (title.contains(" ")) {
                 title = title.replace(" ", "+");
             }
             thisAsyncTask.execute(title, "song");
-        }
-        else if (!chord.equals("")){
-            if (chord.contains(" ")) {
-                chord = chord.replace(" ", "+");
+        } else if (!chord.equals("")){
+            withCap = chord.substring(0, 1).toUpperCase() + chord.substring(1);
+            thisAsyncTask.execute(withCap, "chord");
+            if (title.contains(" ") || title.contains("-")) {
+                Toast.makeText(this, "Please enter one chord", Toast.LENGTH_SHORT).show();
             }
-            thisAsyncTask.execute(chord, "chord");
-        }
-        else {
+        } else {
             Toast.makeText(this, "Please enter Keyword", Toast.LENGTH_SHORT).show();
         }
     }

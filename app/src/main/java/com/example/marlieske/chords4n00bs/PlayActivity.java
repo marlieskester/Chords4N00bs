@@ -51,7 +51,7 @@ Song song;
 //        LyricsParser parser = new LyricsParser();
 //        ArrayList<LyricsParser.Lyrics> songContent = parser.parse(song);
         parser2 parser = new parser2();
-        ArrayList<parser2.Lyrics> songContent = parser.parse(song);
+        ArrayList<Lyrics> songContent = parser.parse(song);
         amount = songContent.size();
         PlayListAdapter adapter = new PlayListAdapter(this, R.layout.lyrics, songContent, diagram);
 

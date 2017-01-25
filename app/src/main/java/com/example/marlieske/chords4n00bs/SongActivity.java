@@ -17,7 +17,7 @@ import static com.example.marlieske.chords4n00bs.R.string.chord;
 
 public class SongActivity extends AppCompatActivity {
     Song song;
-    ArrayList<parser2.Lyrics> songContent;
+    ArrayList<Lyrics> songContent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
