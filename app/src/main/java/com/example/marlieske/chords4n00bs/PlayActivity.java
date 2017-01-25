@@ -47,6 +47,7 @@ Song song;
         Button fasterButton = (Button) findViewById(R.id.speed_up);
         Button slowerButton = (Button) findViewById(R.id.speed_down);
         fasterButton.bringToFront();
+        slowerButton.bringToFront();
     }
 
     public void showSong(){

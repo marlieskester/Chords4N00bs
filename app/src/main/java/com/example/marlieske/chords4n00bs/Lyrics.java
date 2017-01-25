@@ -10,19 +10,19 @@ import java.util.ArrayList;
  */
 
 public class Lyrics implements Parcelable {
-    ArrayList songtext;
+    String songtext;
     ArrayList<String> chord;
     // String DiagramLink;
 
     /**constructor class**/
-    public Lyrics(ArrayList songtext, ArrayList chord){
+    public Lyrics(String songtext, ArrayList chord){
         this.songtext = songtext;
         this.chord = chord;
     }
 
 
     protected Lyrics(Parcel in) {
-        this.songtext = in.readArrayList(null);
+        this.songtext = in.readString();
         this.chord = in.readArrayList(null);
     }
 
@@ -45,7 +45,7 @@ public class Lyrics implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeList(songtext);
+        dest.writeString(songtext);
         dest.writeList(chord);
     }
 }

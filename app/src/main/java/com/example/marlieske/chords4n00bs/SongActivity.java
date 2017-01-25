@@ -73,7 +73,6 @@ public class SongActivity extends AppCompatActivity {
             Lyrics temp = songContent.get(i);
             for (int j = 0; j < temp.chord.size(); j++){
                 String scaleChord = temp.chord.get(j);
-                Log.d("transpose", scaleChord);
                 if (direction.equals("up")){
                     scaleChord = transposeUP(scaleChord);
                 }
@@ -81,10 +80,9 @@ public class SongActivity extends AppCompatActivity {
                     scaleChord = transposeDOWN(scaleChord);
                 }
                 temp.chord.set(j, scaleChord);
-                Log.d("transpose", scaleChord);
             }
         }
-        transposeStep2();
+        transposeStep2(songContent);
     }
 
     public String transposeUP(String chord){
@@ -171,8 +169,16 @@ public class SongActivity extends AppCompatActivity {
     }
 
 
-    public void transposeStep2(){
-
+    public ArrayList<Lyrics> transposeStep2(ArrayList<Lyrics> transposedSong) {
+        for (int i = 0; i < transposedSong.size(); i++) {
+            Lyrics transposedLyrics = transposedSong.get(i);
+            int chordcount = 0;
+            while (transposedLyrics.songtext.contains("_")) {
+                transposedLyrics.songtext = transposedLyrics.songtext.replace("_", transposedLyrics.chord.get(chordcount));
+                chordcount++;
+            }
+        }
+        return transposedSong;
     }
 
     public void chooseInstrument(){

@@ -38,8 +38,9 @@ public class PlayListAdapter extends ArrayAdapter<Lyrics> {
         ImageView IVDiagram = (ImageView) convertView.findViewById(R.id.lyricsDiagram);
 
         Lyrics thisSong = lyrics.get(position);
-        String lyrics = (String) thisSong.songtext.get(position);
-        TVLyrics.setText(thisSong.songtext.get(position).toString());
+        String lyrics = thisSong.songtext;
+        TVLyrics.setText(lyrics);
+        //TVLyrics.setText(thisSong.songtext.get(0).toString());
 
         if (checked) {
             int chordAmount = thisSong.chord.size();

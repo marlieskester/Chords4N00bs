@@ -15,15 +15,17 @@ import java.util.ArrayList;
 public class parser2 {
     public ArrayList<Lyrics> parse(Song song) {
         // TextView lyrics = (TextView) findViewById(R.id.lyricsLyrics);
-        ArrayList songtext = new ArrayList();
-        ArrayList chords = new ArrayList<>();
-        Lyrics newLyrics = new Lyrics(songtext, chords);
+
 
         BufferedReader reader = new BufferedReader(new StringReader(song.content));
         ArrayList<Lyrics> playsong = new ArrayList<>();
         try {
             String line = reader.readLine();
             while (line != null) {
+                String songtext = null;
+                ArrayList chords = new ArrayList<>();
+                Lyrics newLyrics = new Lyrics(songtext, chords);
+
                 while (line.contains("[")) {
                     int startChord = line.indexOf("[");
                     int endChord = line.indexOf("]") + 1;
@@ -33,7 +35,7 @@ public class parser2 {
                     //line = line.substring(endChord + 1);
                 }
 
-                newLyrics.songtext.add(line);
+                newLyrics.songtext = line;
                 line = reader.readLine();
                 playsong.add(newLyrics);
 
@@ -44,5 +46,5 @@ public class parser2 {
         Log.d("parser2", "parse");
         return playsong;
     }
-}
 
+}
