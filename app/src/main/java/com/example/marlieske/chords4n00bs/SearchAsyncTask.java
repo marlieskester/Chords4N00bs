@@ -15,15 +15,15 @@ public class SearchAsyncTask extends AsyncTask<Object, Void, String> {
     private String origin;
 
     /** constructor */
-    public SearchAsyncTask(MainActivity activity){
-        this.mActivity = activity;
-        this.mContext = this.mActivity.getApplicationContext();
+    public SearchAsyncTask(Context activity){
+      //  this.mActivity = activity;
+      //  this.mContext = this.mActivity.getApplicationContext();
+        this.mContext = activity;
     }
 
     /** executes HTTPrequest, returns URL */
     @Override
     protected String doInBackground(Object... params) {
-        Log.d("doinbackground", "enter");
         origin = (String) params[1];
         return HTTPRequestHelper.executeRequest(params[0], origin);
     }
@@ -41,19 +41,18 @@ public class SearchAsyncTask extends AsyncTask<Object, Void, String> {
         if (result.equals("")) {
             Toast.makeText(mContext,"Sorry, nothing found" + result, Toast.LENGTH_SHORT).show();
         } else if (origin.equals("song")) {
-            Log.d("async", "song");
             Intent toListOfSongs = new Intent(mContext, SongListActivity.class);
         //    toListOfSongs.putExtra("result", result);
             toListOfSongs.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             SongListActivity.tmp = result;
-            Log.d("async", "song2");
             mContext.startActivity(toListOfSongs);
-        } else { //chord
-            Log.d("async", "else");
+        } else if (origin.equals("chord")){ //chord
             Intent toListOfChords = new Intent(mContext, ChordListActivity.class);
             toListOfChords.putExtra("result", result);
             toListOfChords.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(toListOfChords);
+        } else {
+
         }
     }
 

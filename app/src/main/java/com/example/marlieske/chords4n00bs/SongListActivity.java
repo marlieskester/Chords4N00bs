@@ -26,8 +26,8 @@ public class SongListActivity extends AppCompatActivity {
 
     /** Connects Arralylist to adapter*/
     public void DisplaySongList(){
-        JSONExtractor ex = new JSONExtractor(result);
-        ArrayList<Song> songs = ex.getSongs();
+        JSONExtractor ex = new JSONExtractor();
+        ArrayList<Song> songs = ex.getSongs(result);
         Log.d("list", "extractor");
         ListView LVItems = (ListView) findViewById(R.id.listofstuff);
         ResultListAdapter adapter = new ResultListAdapter(this, R.layout.result_layout, songs, "ListofSongs");
@@ -36,8 +36,8 @@ public class SongListActivity extends AppCompatActivity {
 
     /** Connects Arralylist to adapter*/
     public void DisplaySongListTEMP(){
-        JSONExtractor ex = new JSONExtractor(tmp);
-        ArrayList<Song> songs = ex.getSongs();
+        JSONExtractor ex = new JSONExtractor();
+        ArrayList<Song> songs = ex.getSongs(tmp);
         Log.d("list", "extractor");
         ListView LVItems = (ListView) findViewById(R.id.listofstuff);
         ResultListAdapter adapter = new ResultListAdapter(this, R.layout.result_layout, songs, "ListofSongs");

@@ -35,7 +35,6 @@ Song song;
         Intent playSong = getIntent();
         Bundle data = playSong.getExtras();
         songContent2 = data.getParcelableArrayList("content2");
-        Log.d("playact", "y " + songContent2);
 
         diagram = data.getBoolean("checked");
         song = data.getParcelable("song");

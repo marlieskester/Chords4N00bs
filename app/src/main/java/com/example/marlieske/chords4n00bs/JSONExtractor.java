@@ -14,19 +14,15 @@ import java.util.ArrayList;
  */
 
 public class JSONExtractor {
-    private String mResults;
-
-    /**
+     /**
      * constructor
      */
-    public JSONExtractor(String results) {
-        this.mResults = results;
-    }
+    public JSONExtractor() {}
 
     /**
      * extracts info from JSON
      */
-    public ArrayList<Song> getSongs() {
+    public ArrayList<Song> getSongs(String mResults) {
         ArrayList<Song> songs = new ArrayList<>();
         try {
             JSONObject jsonwholething = new JSONObject(mResults);
@@ -62,5 +58,21 @@ public class JSONExtractor {
         }
         return songs;
 
+    }
+
+    public Chord getChord(String chords){
+        Chord chord = null;
+        try {
+            JSONObject jsonwholething;
+            jsonwholething = new JSONObject(chords);
+            JSONArray jresults = (JSONArray) jsonwholething.get("objects");
+            JSONObject result = jresults.getJSONObject(0);
+            String name = result.getString("name");
+            String imgurl = result.getString("image_url");
+            chord = new Chord(name, imgurl);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return chord;
     }
 }

@@ -36,24 +36,25 @@ public class ChordListActivity extends AppCompatActivity {
         setContent();
     }
 
-    Chord getContent(){
-        Chord chord = null;
-        try {
-            JSONObject jsonwholething = null;
-            jsonwholething = new JSONObject(result);
-            JSONArray jresults = (JSONArray) jsonwholething.get("objects");
-            JSONObject result = jresults.getJSONObject(0);
-            String name = result.getString("name");
-            String imgurl = result.getString("image_url");
-            chord = new Chord(name, imgurl);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return chord;
-    }
+  //  Chord getContent(){
+//        Chord chord = null;
+//        try {
+//            JSONObject jsonwholething = null;
+//            jsonwholething = new JSONObject(result);
+//            JSONArray jresults = (JSONArray) jsonwholething.get("objects");
+//            JSONObject result = jresults.getJSONObject(0);
+//            String name = result.getString("name");
+//            String imgurl = result.getString("image_url");
+//            chord = new Chord(name, imgurl);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        return chord;
+   // }
 
     void setContent(){
-        Chord chord = getContent();
+        JSONExtractor extractor = new JSONExtractor();
+        Chord chord = extractor.getChord(result);
 
         ImageView chordDiagram = (ImageView) findViewById(R.id.ChordDiagram);
         TextView chordTitle = (TextView) findViewById(R.id.chordName);

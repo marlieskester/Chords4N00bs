@@ -50,24 +50,6 @@ public class SongActivity extends AppCompatActivity {
         Log.d("duurt", "lang");
     }
 
-//    public ArrayList transposeStepOne(){
-//        ArrayList chords = new ArrayList();
-//        for (int i = 0; i < songContent.size(); i++){
-//            LyricsParser.Lyrics temp = songContent.get(i);
-//            chords.add(temp.chord);
-//        }
-//        return chords;
-//    }
-
-//    public ArrayList<LyricsParser.Lyrics> transposeStepTwo(ArrayList chords){
-//        for (int i = 0; i < songContent.size(); i++){
-//            LyricsParser.Lyrics temp = songContent.get(i);
-//            //temp.chord = chords.get(i);
-//            chords.add(temp.chord);
-//        }
-//        return songContent;
-//    }
-
     public void transposeStep1(String direction){
         for (int i = 0; i < songContent.size(); i++){
             Lyrics temp = songContent.get(i);
@@ -82,7 +64,6 @@ public class SongActivity extends AppCompatActivity {
                 temp.chord.set(j, scaleChord);
             }
         }
-        transposeStep2(songContent);
     }
 
     public String transposeUP(String chord){
@@ -169,16 +150,28 @@ public class SongActivity extends AppCompatActivity {
     }
 
 
-    public ArrayList<Lyrics> transposeStep2(ArrayList<Lyrics> transposedSong) {
-        for (int i = 0; i < transposedSong.size(); i++) {
-            Lyrics transposedLyrics = transposedSong.get(i);
+    public ArrayList<Lyrics> transposeStep2(ArrayList<Lyrics> oldSong) {
+
+        ArrayList<Lyrics> newSong = new ArrayList<>();
+
+        for (int i = 0; i < oldSong.size(); i++) {
+            Lyrics oldLyrics = oldSong.get(i);
+
+            String text = null;
+            ArrayList chords = new ArrayList();
+            Lyrics newLyrics = new Lyrics(text, chords);
+
             int chordcount = 0;
-            while (transposedLyrics.songtext.contains("_")) {
-                transposedLyrics.songtext = transposedLyrics.songtext.replace("_", transposedLyrics.chord.get(chordcount));
+            newLyrics.songtext = oldLyrics.songtext;
+            newLyrics.chord = oldLyrics.chord;
+
+            while (newLyrics.songtext.contains("_")) {
+                newLyrics.songtext = newLyrics.songtext.replace("_", newLyrics.chord.get(chordcount));
                 chordcount++;
             }
+            newSong.add(newLyrics);
         }
-        return transposedSong;
+        return newSong;
     }
 
     public void chooseInstrument(){
@@ -188,13 +181,14 @@ public class SongActivity extends AppCompatActivity {
 
 
     public void playSong(View view) {
+        ArrayList<Lyrics> finalSong = transposeStep2(songContent);
         CheckBox diagram = (CheckBox) findViewById(R.id.Diagram);
         //intent naar songview
         Intent toplaySong = new Intent(this, PlayActivity.class);
-        toplaySong.putExtra("content", songContent);
+     //   toplaySong.putExtra("content", songContent);
         toplaySong.putExtra("checked", diagram.isChecked());
         toplaySong.putExtra("song", song);
-        toplaySong.putParcelableArrayListExtra("content2", songContent);
+        toplaySong.putParcelableArrayListExtra("content2", finalSong);
         startActivity(toplaySong);
     }
 

@@ -19,11 +19,13 @@ import java.util.ArrayList;
 public class PlayListAdapter extends ArrayAdapter<Lyrics> {
     ArrayList<Lyrics> lyrics;
     boolean checked;
+    Context context;
 
     public PlayListAdapter(Context context, int resource, ArrayList<Lyrics> lyrics, boolean checked) {
         super(context, resource, lyrics);
         this.lyrics = lyrics;
         this.checked = checked;
+        this.context = context;
     }
 
     @Override
@@ -47,13 +49,19 @@ public class PlayListAdapter extends ArrayAdapter<Lyrics> {
             String chords = "";
             for (int i = 0; i < chordAmount; i++) {
                 chords = chords + ", " + thisSong.chord.get(i);
+       //         HTTPRequestHelper helper = new HTTPRequestHelper();
+       //         String result = helper.executeRequest(thisSong.chord.get(i), "listadapter");
+
+//                SearchAsyncTask async = new SearchAsyncTask(context);
+//                async.execute(thisSong.chord.get(i), "play");
+//                JSONExtractor extractor = new JSONExtractor();
+//                Chord chord = extractor.getChord(result);
+//                new DownloadImageTask(IVDiagram).execute(chord.imgurl);
             }
             TVChords.setText(chords);
-            if (chords.equals("")) {
-                IVDiagram.setVisibility(View.GONE);
-            } else {
+
                 //TODO img nog doen
-            }
+
         }
         else {
             TVChords.setVisibility(View.GONE);
