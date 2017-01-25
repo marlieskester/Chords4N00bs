@@ -25,16 +25,20 @@ import static com.example.marlieske.chords4n00bs.R.id.scrollView;
 
 public class PlayActivity extends AppCompatActivity {
 Song song;
-    int amount;
     Boolean diagram;
+    ArrayList<Lyrics> songContent2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
         Intent playSong = getIntent();
         Bundle data = playSong.getExtras();
-        song = data.getParcelable("content");
-        diagram = data.getBoolean("checked");;
+        songContent2 = data.getParcelableArrayList("content2");
+        Log.d("playact", "y " + songContent2);
+
+        diagram = data.getBoolean("checked");
+        song = data.getParcelable("song");
         showSong();
         setScreen();
     }
@@ -50,10 +54,9 @@ Song song;
         textView.setText(song.title);
 //        LyricsParser parser = new LyricsParser();
 //        ArrayList<LyricsParser.Lyrics> songContent = parser.parse(song);
-        parser2 parser = new parser2();
-        ArrayList<Lyrics> songContent = parser.parse(song);
-        amount = songContent.size();
-        PlayListAdapter adapter = new PlayListAdapter(this, R.layout.lyrics, songContent, diagram);
+//        parser2 parser = new parser2();
+//        ArrayList<Lyrics> songContent = parser.parse(song);
+        PlayListAdapter adapter = new PlayListAdapter(this, R.layout.lyrics, songContent2, diagram);
 
         //ArrayAdapter adapter = new ArrayAdapter<Lyrics>(this, R.layout.songtext, playsong);
         ListView listview = (ListView) findViewById(R.id.listview);
@@ -74,6 +77,7 @@ Song song;
        // ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
         ListView listView = (ListView) findViewById(R.id.listview);
         //listView.smoothScrollToPosition(amount);
+        int amount = songContent2.size();
         while (listView.getLastVisiblePosition() != amount){
             ObjectAnimator.ofInt(listView, "scrollY", 60).setDuration(10).start();
         }

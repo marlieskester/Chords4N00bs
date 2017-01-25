@@ -68,92 +68,118 @@ public class SongActivity extends AppCompatActivity {
 //        return songContent;
 //    }
 
-    public void scaleDown(View view) {
-//        ArrayList chords = transposeStepOne();
-//        for (int i = 0; i < chords.size(); i++) {
-//            String chord = (String) chords.get(i);
-//            if (chord.contains("#")) {
-//                chord.replace("#", "");
-//            } else {
-//                if (chord.contains("Ab")) {
-//                    chord = chord.replace("Ab", "G");
-//                } else if (chord.contains("Bb")) {
-//                    chord = chord.replace("Bb", "A");
-//                } else if (chord.contains("Cb")) {
-//                    chord = chord.replace("C", "B");
-//                } else if (chord.contains("Db")) {
-//                    chord = chord.replace("Db", "C");
-//                } else if (chord.contains("Eb")) {
-//                    chord = chord.replace("Eb", "D");
-//                } else if (chord.contains("Fb")) {
-//                    chord = chord.replace("F", "E");
-//                } else if (chord.contains("Gb")) {
-//                    chord = chord.replace("Gb", "F");
-//                } else if (chord.contains("A")) {
-//                    chord = chord.replace("A", "G#");
-//                } else if (chord.contains("B")) {
-//                    chord = chord.replace("B", "Bb");
-//                } else if (chord.contains("C")) {
-//                    chord = chord.replace("C", "B");
-//                } else if (chord.contains("D")) {
-//                    chord = chord.replace("D", "C#");
-//                } else if (chord.contains("E")) {
-//                    chord = chord.replace("E", "Eb");
-//                } else if (chord.contains("F")) {
-//                    chord = chord.replace("F", "E");
-//                } else if (chord.contains("G")) {
-//                    chord = chord.replace("G", "F#");
-//                }
-//                chords.set(i, chord);
-//            }
-//        }
-//        transposeStepTwo(chords);
+    public void transposeStep1(String direction){
+        for (int i = 0; i < songContent.size(); i++){
+            Lyrics temp = songContent.get(i);
+            for (int j = 0; j < temp.chord.size(); j++){
+                String scaleChord = temp.chord.get(j);
+                Log.d("transpose", scaleChord);
+                if (direction.equals("up")){
+                    scaleChord = transposeUP(scaleChord);
+                }
+                else {
+                    scaleChord = transposeDOWN(scaleChord);
+                }
+                temp.chord.set(j, scaleChord);
+                Log.d("transpose", scaleChord);
+            }
+        }
+        transposeStep2();
     }
+
+    public String transposeUP(String chord){
+        if (chord.contains("b")){
+            chord = chord.replace("b", "");
+        } else {
+            if (chord.contains("A#")) {
+                chord = chord.replace("A#", "B");
+            } else if (chord.contains("B#")){
+                chord = chord.replace("B", "C");
+            } else if (chord.contains("C#")) {
+                chord = chord.replace("C#", "D");
+            } else if (chord.contains("D#")) {
+                chord = chord.replace("D#", "E");
+            } else if (chord.contains("E#")) {
+                chord = chord.replace("E", "F");
+            } else if (chord.contains("F#")) {
+                chord = chord.replace("F#", "G");
+            } else if (chord.contains("G#")) {
+                chord = chord.replace("G#", "A");
+            } else if (chord.contains("A")) {
+                chord = chord.replace("A", "Bb");
+            } else if (chord.contains("B")){
+                chord = chord.replace("B", "C");
+            } else if (chord.contains("C")) {
+                chord = chord.replace("C", "C#");
+            } else if (chord.contains("D")) {
+                chord = chord.replace("D", "Eb");
+            } else if (chord.contains("E")) {
+                chord = chord.replace("E", "F");
+            } else if (chord.contains("F")) {
+                chord = chord.replace("F", "F#");
+            } else if (chord.contains("G")) {
+                chord = chord.replace("G", "G#");
+            }
+        }
+        return chord;
+    }
+
+    public String transposeDOWN(String chord){
+        if (chord.contains("#")) {
+            chord = chord.replace("#", "");
+        } else {
+            if (chord.contains("Ab")) {
+                chord = chord.replace("Ab", "G");
+            } else if (chord.contains("Bb")) {
+                chord = chord.replace("Bb", "A");
+            } else if (chord.contains("Cb")) {
+                chord = chord.replace("C", "B");
+            } else if (chord.contains("Db")) {
+                chord = chord.replace("Db", "C");
+            } else if (chord.contains("Eb")) {
+                chord = chord.replace("Eb", "D");
+            } else if (chord.contains("Fb")) {
+                chord = chord.replace("F", "E");
+            } else if (chord.contains("Gb")) {
+                chord = chord.replace("Gb", "F");
+            } else if (chord.contains("A")) {
+                chord = chord.replace("A", "G#");
+            } else if (chord.contains("B")) {
+                chord = chord.replace("B", "Bb");
+            } else if (chord.contains("C")) {
+                chord = chord.replace("C", "B");
+            } else if (chord.contains("D")) {
+                chord = chord.replace("D", "C#");
+            } else if (chord.contains("E")) {
+                chord = chord.replace("E", "Eb");
+            } else if (chord.contains("F")) {
+                chord = chord.replace("F", "E");
+            } else if (chord.contains("G")) {
+                chord = chord.replace("G", "F#");
+            }
+        }
+        return chord;
+    }
+
 
     public void scaleUp(View view) {
-//        String chord = null;
-//        if (chord.contains("b")){
-//            chord.replace("b", "");
-//        } else {
-//            if (chord.contains("A#")) {
-//                chord.replace("A#", "B");
-//            } else if (chord.contains("B#")){
-//                chord.replace("B", "C");
-//            } else if (chord.contains("C#")) {
-//                chord.replace("C#", "D");
-//            } else if (chord.contains("D#")) {
-//                chord.replace("D#", "E");
-//            } else if (chord.contains("E#")) {
-//                chord.replace("E", "F");
-//            } else if (chord.contains("F#")) {
-//                chord.replace("F#", "G");
-//            } else if (chord.contains("G#")) {
-//                chord.replace("G#", "A");
-//            } else if (chord.contains("A")) {
-//                chord.replace("A", "Bb");
-//            } else if (chord.contains("B")){
-//                chord.replace("B", "C");
-//            } else if (chord.contains("C")) {
-//                chord.replace("C", "C#");
-//            } else if (chord.contains("D")) {
-//                chord.replace("D", "Eb");
-//            } else if (chord.contains("E")) {
-//                chord.replace("E", "F");
-//            } else if (chord.contains("F")) {
-//                chord.replace("F", "F#");
-//            } else if (chord.contains("G")) {
-//                chord.replace("G", "G#");
-//            }
-//        }
+        transposeStep1("up");
+    }
 
+    public void scaleDown(View view) {
+        transposeStep1("down");
     }
 
 
+    public void transposeStep2(){
+
+    }
 
     public void chooseInstrument(){
         // def: guitar
         // als radio 1 checked, radio 2 neit checked
     }
+
 
     public void playSong(View view) {
         CheckBox diagram = (CheckBox) findViewById(R.id.Diagram);
@@ -161,6 +187,8 @@ public class SongActivity extends AppCompatActivity {
         Intent toplaySong = new Intent(this, PlayActivity.class);
         toplaySong.putExtra("content", songContent);
         toplaySong.putExtra("checked", diagram.isChecked());
+        toplaySong.putExtra("song", song);
+        toplaySong.putParcelableArrayListExtra("content2", songContent);
         startActivity(toplaySong);
     }
 
