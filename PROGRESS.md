@@ -66,3 +66,7 @@ Did fix the chord-diagram-bug in the guitar API, so I can go on with that on my 
 # day 3.3
 More work on guitar API, parser & autoscroll.
 Retrieved image, finished parser, large part of transpose works
+
+# day 3.4
+Autoscroll works!!!!!!!
+still needs some work.
