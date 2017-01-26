@@ -52,15 +52,13 @@ public class PlayListAdapter extends ArrayAdapter<Lyrics> {
        //         HTTPRequestHelper helper = new HTTPRequestHelper();
        //         String result = helper.executeRequest(thisSong.chord.get(i), "listadapter");
 
-//                SearchAsyncTask async = new SearchAsyncTask(context);
-//                async.execute(thisSong.chord.get(i), "play");
-//                JSONExtractor extractor = new JSONExtractor();
-//                Chord chord = extractor.getChord(result);
-//                new DownloadImageTask(IVDiagram).execute(chord.imgurl);
+                SearchAsyncTask async = new SearchAsyncTask(context);
+                async.execute(thisSong.chord.get(i), "play");
+                JSONExtractor extractor = new JSONExtractor();
+              //  Chord chord = extractor.getChord(result);
+              //  new DownloadImageTask(IVDiagram).execute(chord.imgurl);
             }
             TVChords.setText(chords);
-
-                //TODO img nog doen
 
         }
         else {

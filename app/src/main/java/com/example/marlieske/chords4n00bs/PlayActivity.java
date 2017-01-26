@@ -1,5 +1,7 @@
 package com.example.marlieske.chords4n00bs;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
@@ -27,6 +29,7 @@ public class PlayActivity extends AppCompatActivity {
 Song song;
     Boolean diagram;
     ArrayList<Lyrics> songContent2;
+    int speed = 50000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,54 +38,50 @@ Song song;
         Intent playSong = getIntent();
         Bundle data = playSong.getExtras();
         songContent2 = data.getParcelableArrayList("content2");
-
         diagram = data.getBoolean("checked");
         song = data.getParcelable("song");
         showSong();
-        setScreen();
+        animation(speed);
     }
 
-    void setScreen(){
+    public void showSong(){
         Button fasterButton = (Button) findViewById(R.id.speed_up);
         Button slowerButton = (Button) findViewById(R.id.speed_down);
         fasterButton.bringToFront();
         slowerButton.bringToFront();
-    }
-
-    public void showSong(){
         TextView textView = (TextView) findViewById(R.id.playTitle);
         textView.setText(song.title);
-//        LyricsParser parser = new LyricsParser();
-//        ArrayList<LyricsParser.Lyrics> songContent = parser.parse(song);
-//        parser2 parser = new parser2();
-//        ArrayList<Lyrics> songContent = parser.parse(song);
         PlayListAdapter adapter = new PlayListAdapter(this, R.layout.lyrics, songContent2, diagram);
-
-        //ArrayAdapter adapter = new ArrayAdapter<Lyrics>(this, R.layout.songtext, playsong);
         ListView listview = (ListView) findViewById(R.id.listview);
         listview.setAdapter(adapter);
     }
 
-    void something(){
-        ObjectAnimator.ofInt(scrollView, "scrollY", 250, 0).setDuration(800).start();
-    }
-
-    void PlanB(){
-        ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
-        scrollView.smoothScrollBy(5000, 0);
-    }
-
-    public void startanimation(View view) {
-        Toast.makeText(this, "hij doet het", Toast.LENGTH_SHORT).show();
-       // ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
-        ListView listView = (ListView) findViewById(R.id.listview);
-        //listView.smoothScrollToPosition(amount);
-        int amount = songContent2.size();
-        while (listView.getLastVisiblePosition() != amount){
-            ObjectAnimator.ofInt(listView, "scrollY", 60).setDuration(10).start();
+    public void faster(View view) {
+        if (speed >= 300) {
+            speed = speed - 300;
         }
+        else if (speed >= 50) {
+            speed = speed - 50;
+        }
+        animation(speed);
+    }
+
+    public void animation(int speed){
+        final ListView listView = (ListView) findViewById(R.id.listview);
+      //  listView.setTop(0);
+        int amount = songContent2.size();
+        listView.smoothScrollToPositionFromTop(amount, 0, speed);
     }
 
 
-
+    public void slower(View view) {
+        if (speed < 1000) {
+            speed = speed + 100;
+        } else if (speed  < 5000){
+            speed = speed + 300;
+        } else {
+            speed = speed + 700;
+        }
+        animation(speed);
+    }
 }

@@ -17,14 +17,15 @@
         android:text="-"
         android:layout_below="@+id/speed_up"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="slower"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+"
         android:id="@+id/speed_up"
-        android:onClick="startanimation"
+        android:onClick="faster"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -46,13 +47,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-
-    <!--<ScrollView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/scrollView">-->
-
-    <!--</ScrollView>-->
 
     <ListView
         android:layout_width="wrap_content"

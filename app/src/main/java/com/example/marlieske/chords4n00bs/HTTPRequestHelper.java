@@ -17,11 +17,18 @@ public class HTTPRequestHelper {
         String result = "";
         URL link;
         String APIkey = "20bb483cdd4b3050a86e988987c416573c96080b";
+        String UkuleleKey = "d41d8cd98f00b204e9800998ecf8427e";
         try {
             if (origin.equals("song")){
                 link = new URL("http://api.guitarparty.com/v2/songs/?query=" + Keyword);
             }
-            else {
+//            else if (origin.equals("ukulele")) {
+//                String parseKeyword = Keyword.toString();
+//                char char2 = parseKeyword.charAt(1);
+//
+//                link = new URL("\"http://ukulele-chords.com/get?" + UkuleleKey + "&r=C&typ=sus2")
+           // }
+         else {
                 link = new URL("http://api.guitarparty.com/v2/chords/?query=" + Keyword);
             }
             HttpURLConnection connection = (HttpURLConnection) link.openConnection();
