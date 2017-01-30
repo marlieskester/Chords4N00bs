@@ -57,31 +57,20 @@ Song song;
     }
 
     public void faster(View view) {
-        if (speed >= 300) {
-            speed = speed - 300;
-        }
-        else if (speed >= 50) {
-            speed = speed - 50;
+        if (speed >= 10){
+            speed = speed - speed / 10;
         }
         animation(speed);
     }
 
     public void animation(int speed){
         final ListView listView = (ListView) findViewById(R.id.listview);
-      //  listView.setTop(0);
         int amount = songContent2.size();
         listView.smoothScrollToPositionFromTop(amount, 0, speed);
     }
 
-
     public void slower(View view) {
-        if (speed < 1000) {
-            speed = speed + 100;
-        } else if (speed  < 5000){
-            speed = speed + 300;
-        } else {
-            speed = speed + 700;
-        }
+        speed = speed + speed / 10;
         animation(speed);
     }
 }

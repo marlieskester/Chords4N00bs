@@ -25,7 +25,7 @@ import static android.R.attr.id;
 import static android.R.attr.name;
 import static com.example.marlieske.chords4n00bs.R.id.ChordDiagram;
 
-public class ChordListActivity extends AppCompatActivity {
+public class ChordListActivity extends AppCompatActivity implements downloadImgInterface{
     String result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +56,15 @@ public class ChordListActivity extends AppCompatActivity {
         JSONExtractor extractor = new JSONExtractor();
         Chord chord = extractor.getChord(result);
 
-        ImageView chordDiagram = (ImageView) findViewById(R.id.ChordDiagram);
         TextView chordTitle = (TextView) findViewById(R.id.chordName);
 
         chordTitle.setText(chord.name);
-        new DownloadImageTask(chordDiagram).execute(chord.imgurl);
+        new DownloadImageTask(this).execute(chord.imgurl);
     }
 
+    @Override
+    public void returnImg(Bitmap input) {
+        ImageView chordDiagram = (ImageView) findViewById(R.id.ChordDiagram);
+        chordDiagram.setImageBitmap(input);
+    }
 }

@@ -15,10 +15,10 @@ import java.io.InputStream;
 
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
     /**source: stackoverflow, "Android Developer"**/
-        ImageView ChordDiagram;
+        downloadImgInterface mListener;
 
-        public DownloadImageTask(ImageView ChordDiagram){
-            this.ChordDiagram = ChordDiagram;
+        public DownloadImageTask(downloadImgInterface listener){
+            this.mListener = listener;
         }
 
         @Override
@@ -36,7 +36,7 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
         }
 
         protected void onPostExecute(Bitmap result){
-            ChordDiagram.setImageBitmap(result);
+            mListener.returnImg(result);
         }
     }
 
