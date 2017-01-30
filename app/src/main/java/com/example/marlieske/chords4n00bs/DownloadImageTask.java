@@ -4,39 +4,42 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ImageView;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 /**
  * Created by Marlieske on 25-1-2017.
+ * source: stackoverflow, "Android Developer"
+ *
+ * Class downloads image using an asynctask and then calls setIMG to connect to imageview.
  */
 
-public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
-    /**source: stackoverflow, "Android Developer"**/
-        downloadImgInterface mListener;
+class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
 
-        public DownloadImageTask(downloadImgInterface listener){
-            this.mListener = listener;
+    /**constructor**/
+    DownloadImageTask(){
         }
 
-        @Override
-        protected Bitmap doInBackground(String... urls) {
-            String url = urls[0];
-            Bitmap myDiagram = null;
-            try {
-                InputStream in = new java.net.URL(url).openStream();
-                myDiagram = BitmapFactory.decodeStream(in);
-            } catch (IOException e) {
-                Log.d("chordlist", "catch");
-                e.printStackTrace();
-            }
-            return myDiagram;
+    /**open connection and download image**/
+    @Override
+    protected Bitmap doInBackground(String... urls) {
+        String url = urls[0];
+        Bitmap myDiagram = null;
+        try {
+            InputStream in = new java.net.URL(url).openStream();
+            myDiagram = BitmapFactory.decodeStream(in);
+        } catch (IOException e) {
+            Log.d("chordlist", "catch");
+            e.printStackTrace();
         }
-
-        protected void onPostExecute(Bitmap result){
-            mListener.returnImg(result);
-        }
+        return myDiagram;
     }
+
+    /**call function that connects image to imageview**/
+    protected void onPostExecute(Bitmap result){
+        ChordListActivity activity = new ChordListActivity();
+        activity.setImg(result);
+    }
+}
 

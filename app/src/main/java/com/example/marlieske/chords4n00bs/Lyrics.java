@@ -7,21 +7,22 @@ import java.util.ArrayList;
 
 /**
  * Created by Marlieske on 25-1-2017.
+ * custom object Lyrics contains for each song-line the chords and lyrics.
+ * Implements parcelable for passing lyrics between activities.
  */
 
-public class Lyrics implements Parcelable {
+class Lyrics implements Parcelable {
     String songtext;
     ArrayList<String> chord;
-    // String DiagramLink;
 
-    /**constructor class**/
-    public Lyrics(String songtext, ArrayList chord){
+    /**constructor**/
+    Lyrics(String songtext, ArrayList chord){
         this.songtext = songtext;
         this.chord = chord;
     }
 
-
-    protected Lyrics(Parcel in) {
+    /**parcelable functions**/
+    private Lyrics(Parcel in) {
         this.songtext = in.readString();
         this.chord = in.readArrayList(null);
     }

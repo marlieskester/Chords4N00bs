@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--android:contentDescription="" -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lyrics_IV_Diagram0"
+        android:id="@+id/lyrics_Lyrics"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lyrics_IV_Diagram0"
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lyrics_IV_Diagram1"
+        android:layout_toRightOf="@id/lyrics_IV_Diagram0"
+        android:layout_toEndOf="@id/lyrics_IV_Diagram0"
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/lyrics_IV_Diagram1"
+        android:layout_toEndOf="@id/lyrics_IV_Diagram1"
+        android:id="@+id/lyrics_IV_Diagram2"
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lyrics_IV_Diagram3"
+        android:layout_toRightOf="@id/lyrics_IV_Diagram2"
+        android:layout_toEndOf="@id/lyrics_IV_Diagram2"
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lyrics_IV_Diagram4"
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        android:layout_toRightOf="@id/lyrics_IV_Diagram3"
+        android:layout_toEndOf="@id/lyrics_IV_Diagram3"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lyrics_IV_Diagram5"
+        android:layout_toRightOf="@id/lyrics_IV_Diagram4"
+        android:layout_toEndOf="@id/lyrics_IV_Diagram4"
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lyrics_IV_Diagram6"
+        android:layout_toRightOf="@id/lyrics_IV_Diagram5"
+        android:layout_toEndOf="@id/lyrics_IV_Diagram5"
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lyrics_Chord"
+        android:layout_above="@+id/lyrics_Lyrics"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp" />
+</RelativeLayout>

@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * Created by Marlieske Doorn
+ * Activity allows user to search for chords and songs or to go to collection of saved songs.
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -16,19 +20,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    /**go to collection of saved songs**/
     public void loadSongBook(View view) {
         Intent toSongbookActivity = new Intent(this, SongBookActivity.class);
         startActivity(toSongbookActivity);
     }
 
+    /**loads result on keyword search**/
     public void searchAll(View view) {
         AsyncTask thisAsyncTask = new SearchAsyncTask(this);
 
-        EditText ETSong = (EditText) findViewById(R.id.songsearch);
+        EditText ETSong = (EditText) findViewById(R.id.main_ET_songsearch);
         String title = ETSong.getText().toString();
-        EditText ETChord = (EditText) findViewById(R.id.chordsearch);
+        EditText ETChord = (EditText) findViewById(R.id.main_ET_chordsearch);
         String chord = ETChord.getText().toString();
-        String withCap = null;
+        String withCap;
 
         if (!title.equals("")){
             if (title.contains(" ")) {

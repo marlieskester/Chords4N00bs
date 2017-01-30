@@ -14,20 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/results"
-        android:id="@+id/header"/>
+        android:id="@+id/songlist_title"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listofstuff"
+        android:id="@+id/songlist_listview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/header" />
-
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:onClick="showSong"-->
-        <!--android:layout_alignParentBottom="true" />-->
+        android:layout_below="@+id/songlist_title" />
 
 </RelativeLayout>

@@ -2,68 +2,44 @@ package com.example.marlieske.chords4n00bs;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+/***
+ * Created by Marlieske Doorn
+ * This activity helps users find a way to play a chord if they don't know how to.
+ * The activity gets an IMG-URI from the asynctask which was triggered in the main activity,
+ * it is then extraacted and run in another asynctask to download the image.
+ */
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.util.ArrayList;
+//TODO: deze nog mooi maken, ukulele optie
 
-import static android.R.attr.id;
-import static android.R.attr.name;
-import static com.example.marlieske.chords4n00bs.R.id.ChordDiagram;
-
-public class ChordListActivity extends AppCompatActivity implements downloadImgInterface{
+public class ChordListActivity extends AppCompatActivity {
     String result;
+
+    /**contructor**/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chord_list);
         Intent toListOfChords = getIntent();
         result = toListOfChords.getStringExtra("result");
-        setContent();
+        getContent();
     }
 
-  //  Chord getContent(){
-//        Chord chord = null;
-//        try {
-//            JSONObject jsonwholething = null;
-//            jsonwholething = new JSONObject(result);
-//            JSONArray jresults = (JSONArray) jsonwholething.get("objects");
-//            JSONObject result = jresults.getJSONObject(0);
-//            String name = result.getString("name");
-//            String imgurl = result.getString("image_url");
-//            chord = new Chord(name, imgurl);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        return chord;
-   // }
-
-    void setContent(){
+    /**triggers JSONextractor and DownloadimageTask to get to the image**/
+    void getContent(){
         JSONExtractor extractor = new JSONExtractor();
         Chord chord = extractor.getChord(result);
-
         TextView chordTitle = (TextView) findViewById(R.id.chordName);
-
         chordTitle.setText(chord.name);
-        new DownloadImageTask(this).execute(chord.imgurl);
+        new DownloadImageTask().execute(chord.imgurl);
     }
 
-    @Override
-    public void returnImg(Bitmap input) {
+    /**connects image to imageview**/
+    public void setImg(Bitmap input) {
         ImageView chordDiagram = (ImageView) findViewById(R.id.ChordDiagram);
         chordDiagram.setImageBitmap(input);
     }

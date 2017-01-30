@@ -1,19 +1,12 @@
 package com.example.marlieske.chords4n00bs;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -39,30 +32,43 @@ public class PlayListAdapter extends ArrayAdapter<Lyrics> /**implements onFinish
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.lyrics, null);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.listview_lyrcs_entry, null);
         }
 
-        TextView TVLyrics = (TextView) convertView.findViewById(R.id.lyricsLyrics);
-        TextView TVChords = (TextView) convertView.findViewById(R.id.lyricsChord);
-        ImageView IVDiagram = (ImageView) convertView.findViewById(R.id.lyricsDiagram);
+        TextView TVLyrics = (TextView) convertView.findViewById(R.id.lyrics_Lyrics);
+        TextView TVChords = (TextView) convertView.findViewById(R.id.lyrics_Chord);
+        ImageView IVDiagram0 = (ImageView) convertView.findViewById(R.id.lyrics_IV_Diagram0);
+        ImageView IVDiagram1 = (ImageView) convertView.findViewById(R.id.lyrics_IV_Diagram1);
+        ImageView IVDiagram2 = (ImageView) convertView.findViewById(R.id.lyrics_IV_Diagram2);
+        ImageView IVDiagram3 = (ImageView) convertView.findViewById(R.id.lyrics_IV_Diagram3);
+        ImageView IVDiagram4 = (ImageView) convertView.findViewById(R.id.lyrics_IV_Diagram4);
+        ImageView IVDiagram5 = (ImageView) convertView.findViewById(R.id.lyrics_IV_Diagram5);
+        ImageView IVDiagram6 = (ImageView) convertView.findViewById(R.id.lyrics_IV_Diagram6);
+
+
 
         Lyrics thisSong = lyrics.get(position);
         String lyrics = thisSong.songtext;
         TVLyrics.setText(lyrics);
         //TVLyrics.setText(thisSong.songtext.get(0).toString());
-
-        if (checked) {
-            int chordAmount = thisSong.chord.size();
+        int chordAmount = thisSong.chord.size();
+        if (checked && chordAmount != 0) {
             String chords = "";
             for (int i = 0; i < chordAmount; i++) {
                 chords = chords + ", " + thisSong.chord.get(i);
                 String chord = thisSong.chord.get(i);
                 String rawInput = "R.drawable." + instrument + "_" + chord;
-                byte[] encodeByte = Base64.decode(rawInput, Base64.DEFAULT);
-                Bitmap input = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-                ImageView diagram = new ImageView(getContext());
-                diagram.setImageBitmap(input);
-                convertView.add(diagram);
+                // ?
+//                    byte[] encodeByte = Base64.decode(rawInput, Base64.DEFAULT);
+
+                //Bitmap input = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+                //ImageView diagram = new ImageView(getContext());
+                int input = R.drawable.gitaar_amaj7;
+                //TODO juiste sterretje pakken
+                //TODO kruizen handelen
+                IVDiagram0.setImageResource(input);
+                //diagram.setImageBitmap(input);
+               // convertView.add(diagram);
 
 //                SearchAsyncTask async = new SearchAsyncTask(context);
 //                async.execute(thisSong.chord.get(i), "play");
@@ -77,25 +83,14 @@ public class PlayListAdapter extends ArrayAdapter<Lyrics> /**implements onFinish
         }
         else {
             TVChords.setVisibility(View.GONE);
-            IVDiagram.setVisibility(View.GONE);
+            IVDiagram0.setVisibility(View.GONE);
         }
 
         return convertView;
     }
-//    public void processFinish(Bitmap output, position) {
-//        ImageView IVDiagram = (ImageView) findViewById()
-//        Log.d("xx", "dfd" + output);
-//        JSONExtractor extractor = new JSONExtractor();
-//        Chord chord = extractor.getChord(output);
-//        new DownloadImageTask(IVDiagram).execute(chord.imgurl);
-        //return output;
-   // }
+
 
     public int getCount() {
         return lyrics.size();
-    }
-
-    public void setImage(){
-
     }
 }

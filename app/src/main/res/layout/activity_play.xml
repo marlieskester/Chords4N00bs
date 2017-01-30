@@ -13,9 +13,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/speed_down"
-        android:text="-"
-        android:layout_below="@+id/speed_up"
+        android:id="@+id/play_button_slower"
+        android:text="@string/slower"
+        android:layout_below="@+id/play_button_faster"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:onClick="slower"/>
@@ -23,21 +23,20 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+"
-        android:id="@+id/speed_up"
+        android:text="@string/faster"
+        android:id="@+id/play_button_faster"
         android:onClick="faster"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        />
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <!--<ListView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParentEnd="true" />-->
+
     <TextView
-        android:text="Hello darkness my old friend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -51,7 +50,7 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listview"
+        android:id="@+id/play_listview"
         android:layout_alignParentTop="true"
         android:layout_below="@id/playTitle"
         android:transcriptMode="alwaysScroll"/>

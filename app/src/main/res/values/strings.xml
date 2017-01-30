@@ -9,4 +9,13 @@
     <string name="results">Results</string>
     <string name="transpose">Transpose</string>
     <string name="show_diagrams">Show chord diagrams</string>
+    <string name="slower">-</string>
+    <string name="faster">+</string>
+    <string name="title">title</string>
+    <string name="key">Key:</string>
+    <string name="ukulele">Ukulele</string>
+    <string name="guitar">Guitar</string>
+    <string name="play">Play</string>
+    <string name="save">Save</string>
+    <string name="songbook">Songbook</string>
 </resources>

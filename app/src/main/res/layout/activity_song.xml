@@ -13,39 +13,39 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="title"
+        android:text="@string/title"
         android:id="@+id/Songtitle"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Key"
-        android:text="Key:"
+        android:text="@string/key"
         android:layout_below="@+id/Songtitle"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/transpose"
         android:layout_below="@+id/Key"
-        android:id="@+id/tvKey"/>
+        android:id="@+id/songTranspose"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="-"
-        android:id="@+id/transpose_down"
-        android:layout_below="@+id/tvKey"
-        android:layout_toEndOf="@+id/transpose_up"
-        android:layout_toRightOf="@+id/transpose_up"
+        android:text="@string/slower"
+        android:id="@+id/song_BTN_transpose_down"
+        android:layout_below="@+id/songTranspose"
+        android:layout_toEndOf="@+id/song_BTN_transpose_up"
+        android:layout_toRightOf="@+id/song_BTN_transpose_up"
         android:onClick="scaleDown"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+"
-        android:id="@+id/transpose_up"
-        android:layout_alignBaseline="@+id/transpose_down"
-        android:layout_alignBottom="@+id/transpose_down"
+        android:text="@string/faster"
+        android:id="@+id/song_BTN_transpose_up"
+        android:layout_alignBaseline="@+id/song_BTN_transpose_down"
+        android:layout_alignBottom="@+id/song_BTN_transpose_down"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:onClick="scaleUp"/>
@@ -54,34 +54,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/show_diagrams"
-        android:layout_below="@+id/transpose_down"
+        android:layout_below="@+id/song_BTN_transpose_down"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/Diagram"/>
+        android:id="@+id/song_CB_Diagram"/>
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ukulele"
-        android:layout_below="@+id/Diagram"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/Ukulele" />
+    <!--<RadioButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/ukulele"-->
+        <!--android:layout_below="@+id/song_CB_Diagram"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:id="@+id/song_RB_Ukulele" />-->
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Guitar"
-        android:layout_below="@+id/Diagram"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:checked="true"
-        android:id="@+id/Guitar" />
+    <!--<RadioButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/guitar"-->
+        <!--android:layout_below="@+id/song_CB_Diagram"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:checked="true"-->
+        <!--android:id="@+id/song_RB_Guitar" />-->
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play"
-        android:id="@+id/play"
+        android:text="@string/play"
+        android:id="@+id/song_BTN_play"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -91,9 +91,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:id="@+id/save"
-        android:layout_above="@+id/play"
+        android:text="@string/save"
+        android:id="@+id/song_BTN_save"
+        android:layout_above="@+id/song_BTN_play"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="11dp"

@@ -2,8 +2,7 @@ package com.example.marlieske.chords4n00bs;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +14,17 @@ import java.util.ArrayList;
 
 /**
  * Created by Marlieske on 10-1-2017.
+ * Adapter shapes list in the intended way. Offers onclick option to view song information and play,
+ * and in case of songbook also offers delete option.
  */
 
-public class ResultListAdapter extends ArrayAdapter<Song> {
-
+class ResultListAdapter extends ArrayAdapter<Song> {
     private Context context;
     private ArrayList<Song> songs;
     private String classname;
 
-    // constructor
-    public ResultListAdapter(Context context, int resource, ArrayList<Song> songs, String classname) {
+    /**constructor**/
+    ResultListAdapter(Context context, int resource, ArrayList<Song> songs, String classname) {
         super(context, resource, songs);
         this.songs = songs;
         this.context = context;
@@ -32,26 +32,22 @@ public class ResultListAdapter extends ArrayAdapter<Song> {
     }
 
 
+    @NonNull
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent){
+    public View getView(final int position, View convertView, @NonNull ViewGroup parent){
 
-        // if no line in listview is available, make a new one
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.result_layout, null);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.listview_result_entry, null);
         }
 
-        // find textviews
         final TextView TVArtist = (TextView) convertView.findViewById(R.id.artistresult);
         final TextView TVTitle = (TextView) convertView.findViewById(R.id.titleresult);
-        final TextView TVKey = (TextView) convertView.findViewById(R.id.keyresult);
-
-        // add text to textview
         final Song song = songs.get(position);
         TVArtist.setText(song.artist);
         TVTitle.setText(song.title);
-        //TVKey.setText(" ");
 
-        // onclick pass Song song to next activity
+        //TODO onclick verplaatsen naar activity? losmaken?
+        //TODO song of lied?
         TVTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +57,6 @@ public class ResultListAdapter extends ArrayAdapter<Song> {
                 String content = thisOne.content;
 
                 Intent selectedSong = new Intent(context, SongActivity.class);
-
                 selectedSong.putExtra("song", new Song(title, artist, content));
                 selectedSong.putExtra("lied", thisOne);
                 context.startActivity(selectedSong);

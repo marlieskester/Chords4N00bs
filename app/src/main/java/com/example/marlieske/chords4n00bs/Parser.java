@@ -12,9 +12,9 @@ import java.util.ArrayList;
  * Created by Marlieske on 23-1-2017.
  */
 
-public class parser2 {
+public class Parser {
     public ArrayList<Lyrics> parse(Song song) {
-        // TextView lyrics = (TextView) findViewById(R.id.lyricsLyrics);
+        // TextView listview_lyrcs_entry = (TextView) findViewById(R.id.lyricsLyrics);
 
 
         BufferedReader reader = new BufferedReader(new StringReader(song.content));
@@ -43,7 +43,7 @@ public class parser2 {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Log.d("parser2", "parse");
+        Log.d("Parser", "parse");
         return playsong;
     }
 

@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 /**
  * Created by Marlieske on 10-1-2017.
+ * Custom object Song contains title, artist and lyrics/chords.
+ * Implements parcelable for passing between activities.
  */
 
 public class Song implements Parcelable {
@@ -42,7 +44,6 @@ public class Song implements Parcelable {
         public Song createFromParcel(Parcel in) {
             return new Song(in);
         }
-
         public Song[] newArray(int size) {
             return new Song[size];
         }

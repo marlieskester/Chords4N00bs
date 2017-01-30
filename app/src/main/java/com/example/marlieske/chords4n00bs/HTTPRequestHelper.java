@@ -11,9 +11,14 @@ import java.net.URL;
 
 /**
  * Created by Marlieske on 10-1-2017.
+ * Class creates URL's using API key & keyword, opens connection and returns JSONcontent
  */
-public class HTTPRequestHelper {
-    public static String executeRequest(Object Keyword, String origin){
+
+//TODO handle Ukulele dinges
+class HTTPRequestHelper {
+
+    /****/
+    static String executeRequest(Object Keyword, String origin){
         String result = "";
         URL link;
         String APIkey = "20bb483cdd4b3050a86e988987c416573c96080b";
@@ -31,21 +36,23 @@ public class HTTPRequestHelper {
          else {
                 link = new URL("http://api.guitarparty.com/v2/chords/?query=" + Keyword);
             }
+
+
+            //TODO hier nieuwe fn van maken?
+
+
             HttpURLConnection connection = (HttpURLConnection) link.openConnection();
 
             // misschien werkt het, misschien niet, maar deze is dus voor song& artist
             connection.setRequestProperty("Guitarparty-Api-Key", APIkey);
             Integer ResponseCode = connection.getResponseCode();
-            Log.d("HTTP", "Y "+link);
 
             if (ResponseCode >= 300 && ResponseCode <= 200) {
                 // if responsecode shows error, get errorstream
                 BufferedReader br = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
                 result = String.valueOf(br);
-                Log.d("HTTP", "fout");
                 //return String.valueOf(br);
             } else {
-                Log.d("HTTP", ResponseCode.toString());
                 // else copy information to result
                 BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String line = br.readLine();
@@ -57,7 +64,6 @@ public class HTTPRequestHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Log.d("HTTP", "x" + result);
         return result;
     }
 }

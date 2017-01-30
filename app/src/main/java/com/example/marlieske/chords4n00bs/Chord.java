@@ -6,6 +6,8 @@ import java.net.URL;
  * Created by Marlieske on 24-1-2017.
  */
 
+
+//TODO: chord wordt dus alleen string
 public class Chord {
     String name;
     String imgurl;

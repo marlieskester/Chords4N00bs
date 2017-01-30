@@ -12,12 +12,16 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import static android.R.attr.data;
-import static com.example.marlieske.chords4n00bs.R.string.chord;
+/**
+ * Created by Marlieske Doorn
+ * Activity forms connection between songlist and play.
+ * Offers transpose and save options.
+ */
 
 public class SongActivity extends AppCompatActivity {
     Song song;
     ArrayList<Lyrics> songContent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +29,8 @@ public class SongActivity extends AppCompatActivity {
         Intent selectedSong = getIntent();
         Bundle data = selectedSong.getExtras();
         song = data.getParcelable("song");
-        Log.d("songact", "x"+song.title);
+        Parser parser = new Parser();
+        songContent = parser.parse(song);
         setInfo();
     }
 
@@ -33,23 +38,13 @@ public class SongActivity extends AppCompatActivity {
         TextView Title = (TextView) findViewById(R.id.Songtitle);
         Title.setText(song.title);
         TextView Key = (TextView) findViewById(R.id.Key);
-        // settext
-        CheckBox diagram = (CheckBox) findViewById(R.id.Diagram);
-        // onchecked
-        RadioButton guitar = (RadioButton) findViewById(R.id.Ukulele);
-        RadioButton Ukulele = (RadioButton) findViewById(R.id.Guitar);
-        if (guitar.isChecked()){
-            Ukulele.setChecked(false);
-        }
-        else {
-            Ukulele.setChecked(true);
-        }
-        Log.d("songact", "setinfo");
-        parser2 parser = new parser2();
-        songContent = parser.parse(song);
-        Log.d("duurt", "lang");
+        Key.setText(songContent.get(0).chord.get(0));
+//        RadioButton guitar = (RadioButton) findViewById(R.id.song_RB_Ukulele);
+//        RadioButton Ukulele = (RadioButton) findViewById(R.id.song_RB_Guitar);
+//
     }
 
+    /**extract all chords from lyrics, change pitch, put back**/
     public void transposeStep1(String direction){
         for (int i = 0; i < songContent.size(); i++){
             Lyrics temp = songContent.get(i);
@@ -57,8 +52,7 @@ public class SongActivity extends AppCompatActivity {
                 String scaleChord = temp.chord.get(j);
                 if (direction.equals("up")){
                     scaleChord = transposeUP(scaleChord);
-                }
-                else {
+                } else {
                     scaleChord = transposeDOWN(scaleChord);
                 }
                 temp.chord.set(j, scaleChord);
@@ -66,6 +60,8 @@ public class SongActivity extends AppCompatActivity {
         }
     }
 
+    /**all chords +.5**/
+    //TODO als er tijd is: veranderen naar ascii
     public String transposeUP(String chord){
         if (chord.contains("b")){
             chord = chord.replace("b", "");
@@ -140,7 +136,7 @@ public class SongActivity extends AppCompatActivity {
         return chord;
     }
 
-
+    /**attach function to button**/
     public void scaleUp(View view) {
         transposeStep1("up");
     }
@@ -149,19 +145,17 @@ public class SongActivity extends AppCompatActivity {
         transposeStep1("down");
     }
 
-
+    /**insert chords in copy of lyrics**/
     public ArrayList<Lyrics> transposeStep2(ArrayList<Lyrics> oldSong) {
-
         ArrayList<Lyrics> newSong = new ArrayList<>();
 
         for (int i = 0; i < oldSong.size(); i++) {
             Lyrics oldLyrics = oldSong.get(i);
-
             String text = null;
             ArrayList chords = new ArrayList();
             Lyrics newLyrics = new Lyrics(text, chords);
-
             int chordcount = 0;
+
             newLyrics.songtext = oldLyrics.songtext;
             newLyrics.chord = oldLyrics.chord;
 
@@ -174,28 +168,22 @@ public class SongActivity extends AppCompatActivity {
         return newSong;
     }
 
-    public void chooseInstrument(){
-        // def: guitar
-        // als radio 1 checked, radio 2 neit checked
-    }
 
-
+    /**collect information and send to next activity**/
     public void playSong(View view) {
         ArrayList<Lyrics> finalSong = transposeStep2(songContent);
-        CheckBox diagram = (CheckBox) findViewById(R.id.Diagram);
-        //intent naar songview
-        Intent toplaySong = new Intent(this, PlayActivity.class);
-     //   toplaySong.putExtra("content", songContent);
-        toplaySong.putExtra("checked", diagram.isChecked());
-        toplaySong.putExtra("song", song);
-        toplaySong.putParcelableArrayListExtra("content2", finalSong);
-        startActivity(toplaySong);
+        CheckBox diagram = (CheckBox) findViewById(R.id.song_CB_Diagram);
+        Intent toPlaySong = new Intent(this, PlayActivity.class);
+        toPlaySong.putExtra("checked", diagram.isChecked());
+        toPlaySong.putExtra("song", song);
+        toPlaySong.putParcelableArrayListExtra("content", finalSong);
+        startActivity(toPlaySong);
     }
 
+    /**save song to SQL**/
     public void saveSettings(View view) {
         DatabaseHelper helper = new DatabaseHelper(this);
         helper.create(song);
         Toast.makeText(this, "added to Songbook", Toast.LENGTH_SHORT).show();
-        // naar songbook?
     }
 }
