@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 public class ChordListActivity extends AppCompatActivity {
     String result;
+    static Chord chord;
 
     /**contructor**/
     @Override
@@ -31,16 +32,14 @@ public class ChordListActivity extends AppCompatActivity {
 
     /**triggers JSONextractor and DownloadimageTask to get to the image**/
     void getContent(){
-        JSONExtractor extractor = new JSONExtractor();
-        Chord chord = extractor.getChord(result);
         TextView chordTitle = (TextView) findViewById(R.id.chordName);
         chordTitle.setText(chord.name);
-        new DownloadImageTask().execute(chord.imgurl);
+        new DownloadImageTask(this).execute(chord.imgurl);
     }
 
     /**connects image to imageview**/
     public void setImg(Bitmap input) {
-        ImageView chordDiagram = (ImageView) findViewById(R.id.ChordDiagram);
+        ImageView chordDiagram = (ImageView) findViewById(R.id.chord_diagram);
         chordDiagram.setImageBitmap(input);
     }
 }

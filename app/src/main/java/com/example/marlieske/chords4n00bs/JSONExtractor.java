@@ -37,7 +37,7 @@ class JSONExtractor {
                     String artist = null;
                     for (int j = 0; j < numberAuthors; j++) {
                         JSONObject jAuthor = (JSONObject) jsonSong.get(j);
-                        artist = artist + jAuthor.getString("name");
+                        artist = artist + jAuthor.getString("name") + " ";
                     }
 
                     Song song = new Song(title, artist, content);

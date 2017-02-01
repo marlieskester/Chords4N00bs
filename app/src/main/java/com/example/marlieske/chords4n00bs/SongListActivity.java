@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class SongListActivity extends AppCompatActivity {
     String result;
     static String tmp;
+    static ArrayList<Song> songs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,8 @@ public class SongListActivity extends AppCompatActivity {
 
     /** Connects Arralylist to adapter*/
     public void DisplaySongList(){
-        JSONExtractor ex = new JSONExtractor();
-        ArrayList<Song> songs = ex.getSongs(tmp);
+      //  JSONExtractor ex = new JSONExtractor();
+      //  ArrayList<Song> songs = ex.getSongs(tmp);
         ListView LVItems = (ListView) findViewById(R.id.songlist_listview);
         ResultListAdapter adapter = new ResultListAdapter(this, R.layout.listview_result_entry, songs, "ListofSongs");
         LVItems.setAdapter(adapter);

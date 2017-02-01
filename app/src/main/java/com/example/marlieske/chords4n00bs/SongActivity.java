@@ -21,6 +21,8 @@ import java.util.ArrayList;
 public class SongActivity extends AppCompatActivity {
     Song song;
     ArrayList<Lyrics> songContent;
+    int firstChord = 0;
+    TextView Key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +39,12 @@ public class SongActivity extends AppCompatActivity {
     public void setInfo(){
         TextView Title = (TextView) findViewById(R.id.Songtitle);
         Title.setText(song.title);
-        TextView Key = (TextView) findViewById(R.id.Key);
-        Key.setText(songContent.get(0).chord.get(0));
+        Key = (TextView) findViewById(R.id.Key);
+        while (songContent.get(firstChord).chord.isEmpty()){
+            firstChord ++;
+        }
+        Key.setText(songContent.get(firstChord).chord.get(0));
+       // Key.setText(songContent.get(0).chord.get(0));
 //        RadioButton guitar = (RadioButton) findViewById(R.id.song_RB_Ukulele);
 //        RadioButton Ukulele = (RadioButton) findViewById(R.id.song_RB_Guitar);
 //
@@ -46,18 +52,22 @@ public class SongActivity extends AppCompatActivity {
 
     /**extract all chords from lyrics, change pitch, put back**/
     public void transposeStep1(String direction){
+        //Transpose transpose = new Transpose();
         for (int i = 0; i < songContent.size(); i++){
             Lyrics temp = songContent.get(i);
             for (int j = 0; j < temp.chord.size(); j++){
                 String scaleChord = temp.chord.get(j);
                 if (direction.equals("up")){
                     scaleChord = transposeUP(scaleChord);
+                    //scaleChord = transpose.ScaleUp(scaleChord);
                 } else {
+                    //scaleChord = transpose.ScaleDown(scaleChord);
                     scaleChord = transposeDOWN(scaleChord);
                 }
                 temp.chord.set(j, scaleChord);
             }
         }
+        Key.setText(songContent.get(firstChord).chord.get(0));
     }
 
     /**all chords +.5**/
@@ -93,7 +103,7 @@ public class SongActivity extends AppCompatActivity {
             } else if (chord.contains("F")) {
                 chord = chord.replace("F", "F#");
             } else if (chord.contains("G")) {
-                chord = chord.replace("G", "G#");
+                chord = chord.replace("G", "Ab");
             }
         }
         return chord;
@@ -151,23 +161,20 @@ public class SongActivity extends AppCompatActivity {
 
         for (int i = 0; i < oldSong.size(); i++) {
             Lyrics oldLyrics = oldSong.get(i);
-            String text = null;
-            ArrayList chords = new ArrayList();
-            Lyrics newLyrics = new Lyrics(text, chords);
+            Lyrics newLyrics = new Lyrics(null, new ArrayList());
             int chordcount = 0;
 
             newLyrics.songtext = oldLyrics.songtext;
             newLyrics.chord = oldLyrics.chord;
 
             while (newLyrics.songtext.contains("_")) {
-                newLyrics.songtext = newLyrics.songtext.replace("_", newLyrics.chord.get(chordcount));
-                chordcount++;
+                newLyrics.songtext = newLyrics.songtext.replaceFirst("_", newLyrics.chord.get(chordcount));
+                chordcount = chordcount + 1;
             }
             newSong.add(newLyrics);
         }
         return newSong;
     }
-
 
     /**collect information and send to next activity**/
     public void playSong(View view) {

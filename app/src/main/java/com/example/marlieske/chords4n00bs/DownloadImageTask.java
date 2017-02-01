@@ -1,5 +1,6 @@
 package com.example.marlieske.chords4n00bs;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -16,10 +17,12 @@ import java.io.InputStream;
  */
 
 class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
+    private ChordListActivity activity;
 
     /**constructor**/
-    DownloadImageTask(){
-        }
+    DownloadImageTask(ChordListActivity activity){
+        this.activity = activity;
+    }
 
     /**open connection and download image**/
     @Override
@@ -38,7 +41,6 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
 
     /**call function that connects image to imageview**/
     protected void onPostExecute(Bitmap result){
-        ChordListActivity activity = new ChordListActivity();
         activity.setImg(result);
     }
 }

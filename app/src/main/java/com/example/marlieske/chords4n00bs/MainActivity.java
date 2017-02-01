@@ -44,9 +44,6 @@ public class MainActivity extends AppCompatActivity {
         } else if (!chord.equals("")){
             withCap = chord.substring(0, 1).toUpperCase() + chord.substring(1);
             thisAsyncTask.execute(withCap, "chord");
-            if (title.contains(" ") || title.contains("-")) {
-                Toast.makeText(this, "Please enter one chord", Toast.LENGTH_SHORT).show();
-            }
         } else {
             Toast.makeText(this, "Please enter Keyword", Toast.LENGTH_SHORT).show();
         }

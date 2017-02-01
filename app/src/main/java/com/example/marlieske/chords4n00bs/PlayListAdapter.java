@@ -14,18 +14,16 @@ import java.util.ArrayList;
  * Created by Marlieske on 18-1-2017.
  */
 
-public class PlayListAdapter extends ArrayAdapter<Lyrics> /**implements onFinished **/{
-    ArrayList<Lyrics> lyrics;
-    boolean checked;
-    Context context;
-    String instrument;
+class PlayListAdapter extends ArrayAdapter<Lyrics> /**implements onFinished **/{
+    private ArrayList<Lyrics> lyrics;
+    private boolean checked;
+    private Context context;
 
-    public PlayListAdapter(Context context, int resource, ArrayList<Lyrics> lyrics, boolean checked) {
+    PlayListAdapter(Context context, int resource, ArrayList<Lyrics> lyrics, boolean checked) {
         super(context, resource, lyrics);
         this.lyrics = lyrics;
         this.checked = checked;
         this.context = context;
-        this.instrument = "Guitar";
     }
 
     @Override
@@ -57,7 +55,7 @@ public class PlayListAdapter extends ArrayAdapter<Lyrics> /**implements onFinish
             for (int i = 0; i < chordAmount; i++) {
                 chords = chords + ", " + thisSong.chord.get(i);
                 String chord = thisSong.chord.get(i);
-                String rawInput = "R.drawable." + instrument + "_" + chord;
+                String rawInput = "R.drawable.guitar_" + chord;
                 // ?
 //                    byte[] encodeByte = Base64.decode(rawInput, Base64.DEFAULT);
 
@@ -66,7 +64,7 @@ public class PlayListAdapter extends ArrayAdapter<Lyrics> /**implements onFinish
                 int input = R.drawable.gitaar_amaj7;
                 //TODO juiste sterretje pakken
                 //TODO kruizen handelen
-                IVDiagram0.setImageResource(input);
+              //  IVDiagram0.setImageResource(input);
                 //diagram.setImageBitmap(input);
                // convertView.add(diagram);
 
@@ -84,8 +82,13 @@ public class PlayListAdapter extends ArrayAdapter<Lyrics> /**implements onFinish
         else {
             TVChords.setVisibility(View.GONE);
             IVDiagram0.setVisibility(View.GONE);
+            IVDiagram1.setVisibility(View.GONE);
+            IVDiagram2.setVisibility(View.GONE);
+            IVDiagram3.setVisibility(View.GONE);
+            IVDiagram4.setVisibility(View.GONE);
+            IVDiagram5.setVisibility(View.GONE);
+            IVDiagram6.setVisibility(View.GONE);
         }
-
         return convertView;
     }
 

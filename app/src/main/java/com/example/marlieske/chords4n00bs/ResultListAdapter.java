@@ -40,8 +40,8 @@ class ResultListAdapter extends ArrayAdapter<Song> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.listview_result_entry, null);
         }
 
-        final TextView TVArtist = (TextView) convertView.findViewById(R.id.artistresult);
-        final TextView TVTitle = (TextView) convertView.findViewById(R.id.titleresult);
+        final TextView TVArtist = (TextView) convertView.findViewById(R.id.result_artist);
+        final TextView TVTitle = (TextView) convertView.findViewById(R.id.result_title);
         final Song song = songs.get(position);
         TVArtist.setText(song.artist);
         TVTitle.setText(song.title);

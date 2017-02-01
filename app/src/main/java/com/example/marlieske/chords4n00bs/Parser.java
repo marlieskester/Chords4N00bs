@@ -7,32 +7,36 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 /**
  * Created by Marlieske on 23-1-2017.
+ * Parser seperates lines of the song, and extracts chords.
  */
 
-public class Parser {
-    public ArrayList<Lyrics> parse(Song song) {
-        // TextView listview_lyrcs_entry = (TextView) findViewById(R.id.lyricsLyrics);
-
-
+class Parser {
+    ArrayList<Lyrics> parse(Song song) {
         BufferedReader reader = new BufferedReader(new StringReader(song.content));
         ArrayList<Lyrics> playsong = new ArrayList<>();
         try {
             String line = reader.readLine();
+
+            // add some blank lines for easier use of autoscroll
+            for (int i = 0; i < 5; i++) {
+                Lyrics lyrics = new Lyrics(" ", new ArrayList());
+                playsong.add(lyrics);
+            }
             while (line != null) {
-                String songtext = null;
-                ArrayList chords = new ArrayList<>();
-                Lyrics newLyrics = new Lyrics(songtext, chords);
+               // String songtext = null;
+              //  ArrayList chords = new ArrayList<>();
+                Lyrics newLyrics = new Lyrics(null, new ArrayList());
 
                 while (line.contains("[")) {
                     int startChord = line.indexOf("[");
                     int endChord = line.indexOf("]") + 1;
                     String chord = line.substring(startChord, endChord);
                     newLyrics.chord.add(chord);
-                    line = line.replace(chord, "_");
-                    //line = line.substring(endChord + 1);
+                    line = line.replaceFirst(Pattern.quote(chord), "_");
                 }
 
                 newLyrics.songtext = line;
@@ -43,7 +47,6 @@ public class Parser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Log.d("Parser", "parse");
         return playsong;
     }
 

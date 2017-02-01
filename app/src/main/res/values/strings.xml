@@ -18,4 +18,5 @@
     <string name="play">Play</string>
     <string name="save">Save</string>
     <string name="songbook">Songbook</string>
+    <string name="diagram">diagram</string>
 </resources>
