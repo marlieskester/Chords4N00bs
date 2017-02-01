@@ -70,3 +70,13 @@ Retrieved image, finished parser, large part of transpose works
 # day 3.4
 Autoscroll works!!!!!!!
 still needs some work.
+
+# day 4.1
+Refactor step 1 is done. added todo's & did some work on diagrams.
+tomorrow: chekc what needs to be done. Expected:
+- code design
+- layout
+- textdocs
+- final report
+
+aim for 2 a day.
