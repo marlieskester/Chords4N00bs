@@ -80,3 +80,11 @@ tomorrow: chekc what needs to be done. Expected:
 - final report
 
 aim for 2 a day.
+
+# day 4.2
+Final report vs 1, app layout vs 1.
+Tried to clean some code (mainly transpose and async), but was not very succesful :(
+
+# day 4.3
+Ran into a bug, fixed it :)
+
