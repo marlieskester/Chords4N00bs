@@ -45,13 +45,18 @@ This turned out to bea nightmare. I have spent hours and hours to find a way to 
 Transpose
 --------------
 The transpose function also cost me some headache. I wrote a big (ugly) function to change the chord itself, and after that there was still the trouble of finding the chord and replacing it with the new chord. It took me a week to find out it actually didn't work (the function put the same chord in every slot). 
-I have tried to improve the chord-changing function (by using UTF coding-math instead of actual letters), but unfortunately that didn't work.
+I have tried to improve the chord-changing function (by using UTF coding-math instead of actual letters), but because of some exceptions in music it still became a very big function with a lot of if/else. Therefore I decided to stick with the more hardcoded option, because neither of the codes is shorter nor more elegant, and in my eyes the next criterion is understandibility. In the 'hardcoded' version what happens is clearly visible, whereas in the UTF-8 code you go from string to char to byte to char to string, just to do the same thing.
 
 Chords & Diagrams
 -------------
 Another issue. The reason for me to create this app was so that you don't have to look up each chord if you don't know how to play the instrument you are holding. The API had an option to return chord images, so I intended on using that, not realizing how many data (and coding nightmares) it would cost to use an API instead of images saved in the app. So when I was told this was not the way there was still quite some work to be done. Not just conding, but also manually cutting all the images...
-**to do**
+After giving up about.. three times, mainly because of time pressure, I found some time left on deadline day - and I did it!
+I had to work around sharps in the chords (because these symbols are not supported in the drawable file), and it was quite a puzzle to dynamically select views, but in the end it does work. 
 
 Chords continued
 ------------------
 Probably the only big change in my design: the chord-activity. I wanted to give the user multiple options on how to play the chord in the chordactivity, and provide onclick options to browse through similar chords. Unfortunately the API did not cooperate in the way I hoped, the chord variations cannot be imported (unless a double asynctask is used, which would make it take a lot longer). So instead I decided to only show the requested chord.
+
+Design
+---------------------
+I had the idea to implement a day and night design so that the application would be user friendly at any hour. Unfortunately I did not have time for this. The way to do this would be either a checkbox in the main activity.
