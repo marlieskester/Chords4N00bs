@@ -5,7 +5,7 @@ Programming project UVA
 # Summary
 Create an Android Application which helps musicians by displaying songs and chords.
 # copyright
-This project was created solely by me (and some open source help). I agree to release my text and image contributions, unless otherwise stated, into the public domain. 
+This project is licensed under the terms of the MIT license.
 
 # Proposal
 The problem 
