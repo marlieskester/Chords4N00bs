@@ -1,8 +1,5 @@
 package com.example.marlieske.chords4n00bs;
 
-import android.util.Log;
-import android.view.View;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;

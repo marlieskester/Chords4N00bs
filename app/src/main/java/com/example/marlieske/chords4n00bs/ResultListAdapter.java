@@ -58,7 +58,7 @@ class ResultListAdapter extends ArrayAdapter<Song> {
 
                 Intent selectedSong = new Intent(context, SongActivity.class);
                 selectedSong.putExtra("song", new Song(title, artist, content));
-                selectedSong.putExtra("lied", thisOne);
+            //    selectedSong.putExtra("lied", thisOne);
                 context.startActivity(selectedSong);
             }
         });

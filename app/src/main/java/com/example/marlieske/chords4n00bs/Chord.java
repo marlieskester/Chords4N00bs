@@ -1,19 +1,16 @@
 package com.example.marlieske.chords4n00bs;
 
-import java.net.URL;
-
 /**
  * Created by Marlieske on 24-1-2017.
+ * Custom object chord, accessed from ChordActivity, asynctask and JSONExtractor.
  */
 
-
-//TODO: chord wordt dus alleen string
-public class Chord {
+class Chord {
     String name;
     String imgurl;
 
     /**Constructor*/
-    public Chord(String name, String imgurl) {
+    Chord(String name, String imgurl) {
         this.name = name;
         this.imgurl = imgurl;
     }

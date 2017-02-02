@@ -1,6 +1,5 @@
 package com.example.marlieske.chords4n00bs;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -17,10 +16,10 @@ import java.io.InputStream;
  */
 
 class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
-    private ChordListActivity activity;
+    private ChordActivity activity;
 
     /**constructor**/
-    DownloadImageTask(ChordListActivity activity){
+    DownloadImageTask(ChordActivity activity){
         this.activity = activity;
     }
 

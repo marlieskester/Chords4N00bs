@@ -5,8 +5,6 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -34,7 +32,7 @@ class JSONExtractor {
                     JSONArray jsonSong = (JSONArray) result.get("authors");
 
                     int numberAuthors = jsonSong.length();
-                    String artist = null;
+                    String artist = "";
                     for (int j = 0; j < numberAuthors; j++) {
                         JSONObject jAuthor = (JSONObject) jsonSong.get(j);
                         artist = artist + jAuthor.getString("name") + " ";

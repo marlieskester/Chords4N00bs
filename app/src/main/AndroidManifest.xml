@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".SongBookActivity" />
         <activity android:name=".SongListActivity" />
-        <activity android:name=".ChordListActivity" />
+        <activity android:name=".ChordActivity" />
         <activity android:name=".PlayActivity" />
         <activity android:name=".SongActivity" />
     </application>

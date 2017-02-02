@@ -28,21 +28,21 @@ public class MainActivity extends AppCompatActivity {
 
     /**loads result on keyword search**/
     public void searchAll(View view) {
-        AsyncTask thisAsyncTask = new SearchAsyncTask(this);
-
         EditText ETSong = (EditText) findViewById(R.id.main_ET_songsearch);
         String title = ETSong.getText().toString();
         EditText ETChord = (EditText) findViewById(R.id.main_ET_chordsearch);
         String chord = ETChord.getText().toString();
-        String withCap;
 
         if (!title.equals("")){
             if (title.contains(" ")) {
                 title = title.replace(" ", "+");
             }
+            AsyncTask thisAsyncTask = new SongSearchAsyncTask(this);
             thisAsyncTask.execute(title, "song");
         } else if (!chord.equals("")){
-            withCap = chord.substring(0, 1).toUpperCase() + chord.substring(1);
+            String withCap = chord.substring(0, 1).toUpperCase() + chord.substring(1);
+
+            AsyncTask thisAsyncTask = new ChordSearchAsyncTask(this);
             thisAsyncTask.execute(withCap, "chord");
         } else {
             Toast.makeText(this, "Please enter Keyword", Toast.LENGTH_SHORT).show();
