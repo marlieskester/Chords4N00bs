@@ -93,3 +93,6 @@ If there is any time left either try to create 2 styles or finish diagrams.
 # day 4.4
 More refactoring, bettercodehub mark 7
 Finishing touches, screenshots, trying to shorten code as much as possible.
+In the end I decided to be finished (bettercodehub thinks it can be shorter, but it really wouldn't make sense to break up te code just to have two shorter functions if they intertwine like they do), and I had some time left.
+I made the diagram thing work :D:D
+Thanks to quite some thinking beforehand it was really doable and all the bugs are cut out. Right now I am waiting for the emulator and if it works I need to go and celebrate. Happy!!
