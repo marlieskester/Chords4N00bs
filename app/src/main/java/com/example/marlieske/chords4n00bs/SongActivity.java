@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -13,6 +12,9 @@ import java.util.ArrayList;
  * Created by Marlieske Doorn
  * Activity forms connection between songlist and play.
  * Offers transpose and save options.
+ * NOTE:
+ * To determine key, all chords must be conidered, exceptions must be found and a key can be extracted.
+ * Or, 90% of the songs start out with a chord equal to the key, which I preferred to use in this case.
  */
 
 public class SongActivity extends AppCompatActivity {
@@ -31,8 +33,10 @@ public class SongActivity extends AppCompatActivity {
         Parser parser = new Parser();
         songContent = parser.parse(song);
         setInfo();
+        setKey();
     }
 
+    /**sets title and int firstChord**/
     public void setInfo(){
         TextView Title = (TextView) findViewById(R.id.Songtitle);
         Title.setText(song.title);
@@ -40,35 +44,33 @@ public class SongActivity extends AppCompatActivity {
         while (songContent.get(firstChord).chord.isEmpty()){
             firstChord ++;
         }
-        Key.setText(songContent.get(firstChord).chord.get(0));
-       // Key.setText(songContent.get(0).chord.get(0));
-//        RadioButton guitar = (RadioButton) findViewById(R.id.song_RB_Ukulele);
-//        RadioButton Ukulele = (RadioButton) findViewById(R.id.song_RB_Guitar);
-//
+    }
+
+    /**adapts the textview to the current key**/
+    void setKey(){
+        String first = songContent.get(firstChord).chord.get(0);
+        String keyText = "Key: " + first.substring(1, first.length() - 1);
+        Key.setText(keyText);
     }
 
     /**extract all chords from lyrics, change pitch, put back**/
     public void transposeStep1(String direction){
-        //Transpose transpose = new Transpose();
         for (int i = 0; i < songContent.size(); i++){
             Lyrics temp = songContent.get(i);
             for (int j = 0; j < temp.chord.size(); j++){
                 String scaleChord = temp.chord.get(j);
                 if (direction.equals("up")){
                     scaleChord = transposeUP(scaleChord);
-                    //scaleChord = transpose.ScaleUp(scaleChord);
                 } else {
-                    //scaleChord = transpose.ScaleDown(scaleChord);
                     scaleChord = transposeDOWN(scaleChord);
                 }
                 temp.chord.set(j, scaleChord);
             }
         }
-        Key.setText(songContent.get(firstChord).chord.get(0));
+        setKey();
     }
 
     /**all chords +.5**/
-    //TODO als er tijd is: veranderen naar ascii
     public String transposeUP(String chord){
         if (chord.contains("b")){
             chord = chord.replace("b", "");
@@ -176,9 +178,10 @@ public class SongActivity extends AppCompatActivity {
     /**collect information and send to next activity**/
     public void playSong(View view) {
         ArrayList<Lyrics> finalSong = transposeStep2(songContent);
-        CheckBox diagram = (CheckBox) findViewById(R.id.song_CB_Diagram);
+        //CheckBox diagram = (CheckBox) findViewById(R.id.song_CB_Diagram);
+
         Intent toPlaySong = new Intent(this, PlayActivity.class);
-        toPlaySong.putExtra("checked", diagram.isChecked());
+        toPlaySong.putExtra("checked", false);
         toPlaySong.putExtra("song", song);
         toPlaySong.putParcelableArrayListExtra("content", finalSong);
         startActivity(toPlaySong);

@@ -11,6 +11,9 @@ import android.widget.Toast;
 /**
  * Created by Marlieske Doorn
  * Activity allows user to search for chords and songs or to go to collection of saved songs.
+ * In the chord search no # are accepted, because the API cannot handle these.
+ * The other option is to manually handle sharps by changing c# to Db programmatically,
+ * which would result in another function like scaleUP but then not even very useful.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -33,16 +36,15 @@ public class MainActivity extends AppCompatActivity {
         EditText ETChord = (EditText) findViewById(R.id.main_ET_chordsearch);
         String chord = ETChord.getText().toString();
 
+        SearchAsyncTask thisAsyncTask = new SearchAsyncTask(this);
+
         if (!title.equals("")){
             if (title.contains(" ")) {
                 title = title.replace(" ", "+");
             }
-            AsyncTask thisAsyncTask = new SongSearchAsyncTask(this);
             thisAsyncTask.execute(title, "song");
         } else if (!chord.equals("")){
             String withCap = chord.substring(0, 1).toUpperCase() + chord.substring(1);
-
-            AsyncTask thisAsyncTask = new ChordSearchAsyncTask(this);
             thisAsyncTask.execute(withCap, "chord");
         } else {
             Toast.makeText(this, "Please enter Keyword", Toast.LENGTH_SHORT).show();

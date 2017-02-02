@@ -11,10 +11,9 @@ import java.net.URL;
  * Class creates URL's using API key & keyword, opens connection and returns JSONcontent
  */
 
-//TODO handle Ukulele dinges
 class HTTPRequestHelper {
 
-    /****/
+    /**creates URL using keyword and "origin"**/
     private static URL createURL(Object Keyword, String origin){
         URL link = null;
         try {
@@ -29,6 +28,7 @@ class HTTPRequestHelper {
         return link;
     }
 
+    /**creates connection between application and provided URL**/
     static String openConnection(Object Keyword, String Origin){
         String APIkey = "20bb483cdd4b3050a86e988987c416573c96080b";
         String result = "";
@@ -53,7 +53,6 @@ class HTTPRequestHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return result;
     }
 }

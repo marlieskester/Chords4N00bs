@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static com.example.marlieske.chords4n00bs.R.string.song;
+
 /**
  * Created by Marlieske on 10-1-2017.
  * Adapter shapes list in the intended way. Offers onclick option to view song information and play,
@@ -46,33 +48,17 @@ class ResultListAdapter extends ArrayAdapter<Song> {
         TVArtist.setText(song.artist);
         TVTitle.setText(song.title);
 
-        //TODO onclick verplaatsen naar activity? losmaken?
-        //TODO song of lied?
         TVTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Song thisOne = songs.get(position);
-                String title = thisOne.title;
-                String artist = thisOne.artist;
-                String content = thisOne.content;
-
-                Intent selectedSong = new Intent(context, SongActivity.class);
-                selectedSong.putExtra("song", new Song(title, artist, content));
-            //    selectedSong.putExtra("lied", thisOne);
-                context.startActivity(selectedSong);
+                passSong(position);
             }
         });
 
         TVTitle.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if (classname.equals("songbook")) {
-                    DatabaseHelper helper = new DatabaseHelper(context);
-                    helper.delete(song.title);
-                    Toast.makeText(context, "Deleted song from list", Toast.LENGTH_SHORT).show();
-                    Intent deletedSong = new Intent(context, MainActivity.class);
-                    context.startActivity(deletedSong);
-                }
+                deleteSong(position);
                 return true;
             }
         });
@@ -81,5 +67,26 @@ class ResultListAdapter extends ArrayAdapter<Song> {
 
     public int getCount(){
         return songs.size();
+    }
+
+    private void passSong(int position){
+        Song thisOne = songs.get(position);
+        String title = thisOne.title;
+        String artist = thisOne.artist;
+        String content = thisOne.content;
+
+        Intent selectedSong = new Intent(context, SongActivity.class);
+        selectedSong.putExtra("song", new Song(title, artist, content));
+        context.startActivity(selectedSong);
+    }
+
+    private void deleteSong(int position){
+        if (classname.equals("songbook")) {
+            DatabaseHelper helper = new DatabaseHelper(context);
+            helper.delete(songs.get(position).title);
+            Toast.makeText(context, "Deleted song from list", Toast.LENGTH_SHORT).show();
+            Intent deletedSong = new Intent(context, MainActivity.class);
+            context.startActivity(deletedSong);
+        }
     }
 }
