@@ -87,4 +87,9 @@ Tried to clean some code (mainly transpose and async), but was not very succesfu
 
 # day 4.3
 Ran into a bug, fixed it :)
+Also did some refactoring, bettercodehub-start: 5
+If there is any time left either try to create 2 styles or finish diagrams.
 
+# day 4.4
+More refactoring, bettercodehub mark 7
+Finishing touches, screenshots, trying to shorten code as much as possible.
