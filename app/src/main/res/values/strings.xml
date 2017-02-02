@@ -3,7 +3,7 @@
     <string name="search">search</string>
     <string name="song">Song</string>
     <string name="artist">Artist</string>
-    <string name="chord">Chord, no # accepted.</string>
+    <string name="chord">Chord</string>
     <string name="to_songbook">Or go to SongBook</string>
     <string name="go">GO</string>
     <string name="results">Results</string>

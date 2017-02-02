@@ -35,7 +35,7 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
             Log.d("chordlist", "catch");
             e.printStackTrace();
         }
-        return myDiagram;
+        return Bitmap.createScaledBitmap(myDiagram, (myDiagram.getWidth()*4), (myDiagram.getHeight()*4), true);
     }
 
     /**call function that connects image to imageview**/
