@@ -9,7 +9,8 @@ MainActivity
 - Go to Songbook  
 	onclick, to songbookactivity
 	
-![Main](/doc/main.png)
+<img src="/doc/main.png" width="70">
+
 
 asynctask
 ------------
@@ -22,7 +23,7 @@ songlist
 	onclick naar SongActivity
 	this same layout (with different header) will be used for songbook
 	
-![List](/doc/list.png)
+<img src="/doc/list.png" width="70">
 	
 SongActivity
 -------------------
@@ -38,15 +39,15 @@ SongActivity
 - save  
 	onclick save with current settings to SQL
 	
-![Song](/doc/songinfo.png)
-	
+<img src="/doc/songinfo.png" width="70">
+
 PlayActivity
 ----------------
 - shows text and chords of song
 - add buttons to adjust speed 
 - maybe add save button&transposebutton here instead of SongActivity
 
-![Play](/doc/play.png)
+<img src="/doc/play.png" width="70">
 
 chordactivity
 --------------
@@ -56,7 +57,7 @@ chordactivity
 - list of suggestions?  
 	onclick: chordactivity with new chord on top
 	
-![chord](/doc/chordlist.png)
+<img src="/doc/chordlist.png" width="70">
 	
 SongbookActivity
 --------------
