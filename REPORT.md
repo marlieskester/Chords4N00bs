@@ -1,6 +1,9 @@
 # Chords4N00bs
 The application helps musicians find the chords to a song. The user enters a keyword or title, which results in a list of relevant results. The song are displayed, and transpose and animation options are available.
-**screenshot**
+
+
+<img src="/doc/Screenshot_2017-02-02-10-41-44.png" width="70">
+
 
 # Design
 General flow of information
@@ -10,11 +13,11 @@ Second activity (songlistactivity): the user sees a list of songs and selects on
 Third activity (songactivity): the user can transpose the song, add to songbook and play the song.
 Fourth activity (playactivity): the user sees the lyrics and chords to the song, and he can choose to use the automatic scroll function (with adjustable speed).
 
-Or
-Second activity: the user sees an image of the chord he has just searched
+Or: 
+Second activity (ChordActivity): the user sees an image of the chord he has just searched
 
-Or
-Second activity: the user sees a list of the chord he has added to the songbook. Onclick - go to "Third activity"
+Or: 
+Second activity (SongBookActivity): the user sees a list of the songs he has added to the songbook. Onclick - go to "Third activity"
 
 Detailed flow of information
 ------------------------
@@ -26,9 +29,15 @@ If the user performs a search in the mainactivity, an asynctask is started.
 In case the user searched a song, the next activity shows a list containing the result. The list is composed using a listadapter, which offers an onclick option to view the song.
 The songactivity parses the song first, taking all chord symbols and replacing them with a temporal symbol. If the transpose option is used, the chord symbols are either changed through adding/removing a sharp or flat, or replacing the letter. After transposing the chords, they are put back in a copy of the original song and passed on to the next activity.
 
-The songbook is mainained in DatabaseHelper, a class containing read, write and delete options for SQL. The reason to choose SQL is to have some functionality in the application when the user is offline.
+The songbook is mainained in DatabaseHelper, a class containing read, write and delete options for SQL. The reason to choose SQL is to have some functionality in the application when the user is offline (e.g. on holiday far away at a camping site with nothing but a guitar and a phone).
+
+<img src="/doc/dataflownieuw.png" width="600">
 
 # Challenges
+The BUG
+------------------
+As can be found in my ProgressBook, I have had some trouble with a strange bug: the application would terminate without showing any kind of error or warning. In the end Gracia found a solution (using another way to pass the data). 
+
 Autoscroll
 -------------
 This turned out to bea nightmare. I have spent hours and hours to find a way to do it, I have tried ten different options, each worse than the last. I have conferred with my teammates and TA's, and after over a week of frustration it turned out to be just one little function :( BUT I am really happy I found it!
@@ -41,7 +50,7 @@ I have tried to improve the chord-changing function (by using UTF coding-math in
 Chords & Diagrams
 -------------
 Another issue. The reason for me to create this app was so that you don't have to look up each chord if you don't know how to play the instrument you are holding. The API had an option to return chord images, so I intended on using that, not realizing how many data (and coding nightmares) it would cost to use an API instead of images saved in the app. So when I was told this was not the way there was still quite some work to be done. Not just conding, but also manually cutting all the images...
-Code-wise: Dynamically inserting views in a listview was impossible, and using a string to indicate what view to be used ("R.id.diagram" + i) is also not an option, so a rather ugly function here as well. But I am glad it works!
+**to do**
 
 Chords continued
 ------------------
