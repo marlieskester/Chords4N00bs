@@ -1,30 +1,29 @@
 # Info
 Marlieske Doorn  
 10834958  
-Programmeer project UVA
+Programming project UVA
 # Summary
 Create an Android Application which helps musicians by displaying songs and chords.
 # Proposal
-Het probleem: 
+The problem 
 ------------------
-1 gitaar, 1 kampvuur, maar niemand kan uit zn hoofd liedjes spelen…
-De oplossing: 
+1 guitar, campfire, cosy, all we need is somebody who can actually play the guitar…
+The solution: 
 ------------------
-Een app waarmee je liedjes kan opzoeken, welke vervolgens met autoscroll worden weergegeven. Zo kan je elk nummer spelen wat beschikbaar is, en heb je je handen vrij om te spelen. Voor de beginnende speler is het leuk om akkoord-diagrammen te laten zien, en voor de gevorderde speler is het fijn als dat ook uit kan. 
-Minimaal: 
+An application with which you can search for songs which are then displayed using an autmatic scroll function. This wayevery song available in the database can be played by the user, handsfree. To make life more easy a transpose option (changing the itch of the song) will be available, so that you can either work around difficult chords or make the song easier to sing.  
+Minimum: 
 ------------------
-Minimaal moet de app liedjes kunnen vinden, en de tekst + akkoorden overzichtelijk weergeven. 
-Ideaal:
+At the very least, the application should show the song and chords in a structured manner.
+Ideal:
 ------------------
-Het liefst zou ik een transpose optie hebben, akkoorddiagrammen voor gitaar en ukelele (en misschien andere dingen die praktisch zouden kunnen zijn), een logische autoscroll, en een persoonlijk songbook waarin je nummers met je eigen settings kan opslaan. Eventueel nog een extra zoekfunctie waar je op akkoord kan zoeken (en zo steeds akkoorden kan bijleren, en eventueel ook variaties van akkoorden kan opzoeken).
-Wat heb ik daarvoor nodig:
+It would be best to have transpose function, chorddiagrams for guitar and ukulele (and the option to hide them), an automatic scroll feature and a personal songbook in which songs canbe saved. I might also add an extra search in which you can search for a chord, which then duisplayes an image of how you can play this chord. 
+This requires:
 ------------------
-- Een api voor tekst+akkoorden.
-  Deze heb ik gevonden, hij heeft alleen lang niet alles wat ik wil. Zo kan je niet transponeren (het nummer hoger of lager maken), en is de database niet heel groot. Helaas is dit de enige, dus hier gaat het wel mee gebeuren. Een transpose optie zou ik dus zelf moeten maken, maar dat is wel haalbaar.
-- Een api om akkoorddiagrammen te krijgen.
-	Deze bestaat, met ook de optie voor diverse andere instrumenten.
-
+- a chords+lyrics API. 
+  I have found this and it works, only it doesn;'t work as good as I would want it to. It doesn't contain transpose options, the database is rather small and the search works in a quirky way. Unfortunately this is the only API available so I do have to use it. 
+- a chord-diagram API
+	This exists, both for guitar and ukulele, so that should be fine.
 
 Limitations:
 ------------------
-Autoscroll heb ik nog nooit gebruikt of gemaakt, dus dat zou een uitdaging kunnen worden, en de akkoorden API is dus een beetje prut. 
+I have no experience in implementing automatic scoll, so that will be a challenge, and there are some API limitations. 
