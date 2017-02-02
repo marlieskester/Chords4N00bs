@@ -64,6 +64,12 @@ SongbookActivity
 - listview with all saved songs  
 	onclick: SongActivity  
 	onlongclick: remove from list
+	
+	
+Dataflow
+------------------------
+<img src="/doc/dataflow old.png" width="600">
+
 
 Design
 --------
